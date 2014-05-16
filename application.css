@@ -1,0 +1,17 @@
+body {
+  font-family: sans-serif; }
+  body #canvas {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 1; }
+  body header {
+    position: absolute;
+    top: 0px;
+    left: 100px;
+    background: transparent;
+    z-index: 2; }
+    body header input {
+      width: 300px; }

@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %title NYC Neighborhoods
+    %script{src: "http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"}
+    %script{src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBhmjsRow4-pvZUzsPdYtoS6hyGAu-HqfI&v=3.exp&sensor=true"}
+    %script{src: "neighborhoods.js"}
+    %script{src: "application.js"}
+    %link{rel: "stylesheet", href: "application.css", type: "text/css"}
+  %body
+    %header
+      %h1 NYC Neighborhoods
+      %form#find_address
+        %input#address{type: "text", placeholder: "Enter an address"}
+    %main
+      %div#canvas
