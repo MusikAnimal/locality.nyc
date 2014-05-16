@@ -1,1 +1,0 @@
-function init_map(){var a={center:new google.maps.LatLng(-34.397,150.644),zoom:8};map=new google.maps.Map($("#canvas")[0],a),set_user_coords()}
