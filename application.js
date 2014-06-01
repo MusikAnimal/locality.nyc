@@ -1,35 +1,113 @@
+// 206-218 Madison St, New York, NY
 var openedInfo = new google.maps.InfoWindow();
+var polyList = [];
+var polyIsVisible = true;
+var isMobile = false;
 
 $(document).ready((function() {
-  initMap();
+  if($("footer").not(":visible")) {
+    isMobile = true;
+  }
 
-  // listeners
-  google.maps.event.addListener(map, 'click', function(event) {
-    console.log(google.maps.geometry.poly.containsLocation(event.latLng, unionSquare));
-  });
+  initMap();
 
   $("#find_address").submit(function(e) {
     var address = $("#address").val();
     var gc = new google.maps.Geocoder();
-    gc.geocode({'address' : address}, function(results, status) {
+    gc.geocode({'address' : address}, function(results) {
       var lat = results[0].geometry.location.lat();
       var lng = results[0].geometry.location.lng();
-      var latLng = new google.maps.LatLng(lat,lng);
-      console.log(google.maps.geometry.poly.containsLocation(latLng, unionSquare));
+      infoNeighborhood(lat,lng);
     });
+    e.preventDefault();
+  });
+
+  $("#reset_address").click(function() {
+    $("#address").val("").focus();
+  });
+
+  $("#mylocation").click(function() {
+    $.when(getCurrentPosition()).pipe(setCurrentPosition).then($.proxy(function(results,status) {
+      match = results[0];
+      $("#address").val(match.formatted_address);
+      infoNeighborhood(match.geometry.location.lat(),match.geometry.location.lng());
+    },this));
+  });
+
+  $("a[href='#']").click(function(e) {
     e.preventDefault();
   });
 }));
 
+function getCurrentPosition(options) {
+  var deferred = $.Deferred();
+
+  navigator.geolocation.getCurrentPosition(
+    deferred.resolve,
+    deferred.reject,
+    options
+  );
+
+  return deferred.promise();
+}
+
+function setCurrentPosition(position) {
+  var deferred = $.Deferred();
+
+  var lat = position.coords.latitude;
+  var lng = position.coords.longitude;
+  var latlng = new google.maps.LatLng(lat,lng);
+  var geoCoder = new google.maps.Geocoder();
+  geoCoder.geocode({ location: latlng }, deferred.resolve);
+
+  return deferred.promise();
+}
+
+function getNeighborhood(lat,lng) {
+  var latLng = new google.maps.LatLng(lat,lng);
+
+  return $.grep(polyList, function(zone) {
+    return google.maps.geometry.poly.containsLocation(latLng, zone);
+  });
+}
+
+function infoNeighborhood(lat,lng) {
+  var matches = getNeighborhood(lat,lng);
+  if(matches) {
+    var html = "";
+    for(var i in matches) {
+      html += matches[i].infowindow.content;
+    }
+    var latLng = new google.maps.LatLng(lat,lng);
+    map.setCenter(latLng);
+    map.setZoom(15);
+    openedInfo.close();
+    openedInfo = new google.maps.InfoWindow({
+      content : html
+    });
+    openedInfo.setPosition(latLng);
+    openedInfo.open(map);
+  } else {
+    alert("Not found :(");
+  }
+  return matches;
+}
+
 function initMap() {
   var mapOptions = {
-    // 40.780021,-73.965508
     center: new google.maps.LatLng(40.7902185, -73.945692),
-    zoom: 12
+    zoom: 12,
+    streetViewControl : false
   };
 
+  // if(isMobile) {
+  //   mapOptions = $.extend({
+  //     disableDefaultUI : true
+  //   },mapOptions)
+  // }
+
   map = new google.maps.Map($("#canvas")[0], mapOptions);
-  setUserCoords();
+  // setUserCoords();
   setUpZones();
 }
 
@@ -66,30 +144,38 @@ function setUpZones() {
     });
     poly.setMap(map);
     google.maps.event.addListener(poly, "click", showInfo);
+
+    polyList.push(poly);
   });
 }
 
 function showInfo(e) {
   openedInfo.close();
-  if (openedInfo.name != this.infowindow.name) {
+  if(openedInfo.name != this.infowindow.name) {
     this.infowindow.setPosition(e.latLng);
     this.infowindow.open(map);
     openedInfo = this.infowindow;
   }
 }
 
-function createMarker(item, latlng) {
-  var marker = new google.maps.Marker({position: latlng, map: map});
-  google.maps.event.addListener(marker, "click", function() {
-    if (infowindow) {
-      infowindow.close();
+function toggleZones() {
+  $.each(polyList, function(index, el) {
+    if(polyIsVisible) {
+      el.setMap(null);
+    } else {
+      el.setMap(map);
     }
-    infowindow = new google.maps.InfoWindow({content:
-      "<a href='http://foursquare.com/v/" + item.venue.id + "' target='_blank' style='font-weight:bold; font-size:14px; color: black'>" + item.venue.name + "</a>" +
-      "<p>" + item.beenHere + " check in" + (item.beenHere > 1 ? "s" : "") + " </p>"
-    });
-    infowindow.open(map, marker);
   });
+  polyIsVisible = !polyIsVisible;
+}
+
+function createMarker(latlng, content) {
+  var marker = new google.maps.Marker({position: latlng, map: map});
+  // google.maps.event.addListener(marker, "click", function() {
+  openedInfo.close();
+  openedInfo = new google.maps.InfoWindow({content: content});
+  openedInfo.open(map, marker);
+  // });
   return marker;
 }
 

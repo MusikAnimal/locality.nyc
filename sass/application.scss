@@ -8,16 +8,107 @@ body {
     height: 100%;
     width: 100%;
     z-index: 1;
+    line-height: 1em;
   }
   header {
     position: absolute;
-    top: 0px;
+    top: 20px;
     left: 100px;
-    background: transparent;
+    background: rgba(200,200,200,0.8);
     z-index: 2;
+    border: solid 1px #333333;
+    padding: 20px;
 
-    input {
-      width: 300px;
+    h1 {
+      margin-top: 0px;
+      font-size: 18px;
     }
+  }
+  form {
+    position: relative;
+
+    #reset_address {
+      display: block;
+      color: inherit;
+      width: 18px;
+      height: 18px;
+      background-size: 18px;
+      position: absolute;
+      top: 4px;
+      right: 59px;
+      opacity: 0.5;
+      text-decoration: none;
+      line-height: 20px;
+      text-align: center;
+    }
+  }
+  input {
+    width: 300px;
+    height: 26px;
+    line-height: 26px;
+    border: none;
+    box-sizing: border-box;
+    margin: 0px 5px 0px 0px;
+    font-family: sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    padding: 6px 24px 6px 6px;
+    float: left;
+  }
+
+  button {
+    background: #EEE url('images/search.png') no-repeat center;
+    background-size: 20px;
+    height: 26px;
+    margin: 0px;
+    padding: 0px;
+    float: right;
+    width: 50px;
+    border: 0px;
+  }
+
+  input, button {
+    &:focus {
+      // border: solid 2px #DDD;
+      outline: #888 auto 5px;
+    }
+  }
+
+  #mylocation {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(200,200,200,0.8) url('images/mylocation.png') no-repeat center;
+    background-size: 30px;
+    height: 40px;
+    width: 40px;
+    z-index: 2;
+    border: solid 2px #AAAAAA;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    header {
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+      h1 { margin-bottom: 5px; }
+    }
+    form {
+      input {
+        float: left;
+        width: calc(100% - 67px);
+      }
+      #reset_address {
+        right: 71px;
+      }
+    }
+  }
+  footer {
+    display: none;
   }
 }

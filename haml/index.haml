@@ -8,9 +8,16 @@
     %script{src: "application.js"}
     %link{rel: "stylesheet", href: "application.css", type: "text/css"}
   %body
-    %header
-      %h1 NYC Neighborhoods
-      %form#find_address
-        %input#address{type: "text", placeholder: "Enter an address"}
+    %section#controls
+      %header
+        %h1 NYC Neighborhoods
+        %form#find_address
+          %input#address{type: "text", placeholder: "Enter an address", required: true}
+          %a#reset_address{href: "#"}<
+            &#10005;
+          %button
+      %div#info
+      %div#mylocation
+    %footer
     %main
       %div#canvas

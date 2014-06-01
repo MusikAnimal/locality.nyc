@@ -9,12 +9,19 @@
     <link href='application.css' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <header>
-      <h1>NYC Neighborhoods</h1>
-      <form id='find_address'>
-        <input id='address' placeholder='Enter an address' type='text'>
-      </form>
-    </header>
+    <section id='controls'>
+      <header>
+        <h1>NYC Neighborhoods</h1>
+        <form id='find_address'>
+          <input id='address' placeholder='Enter an address' required type='text'>
+          <a href='#' id='reset_address'>&#10005;</a>
+          <button></button>
+        </form>
+      </header>
+      <div id='info'></div>
+      <div id='mylocation'></div>
+    </section>
+    <footer></footer>
     <main>
       <div id='canvas'></div>
     </main>
