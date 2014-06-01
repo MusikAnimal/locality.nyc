@@ -74,17 +74,46 @@ body {
     }
   }
 
-  #mylocation {
+  #show_hide_zones {
     position: absolute;
     bottom: 20px;
-    right: 20px;
-    background: rgba(200,200,200,0.8) url('images/mylocation.png') no-repeat center;
-    background-size: 30px;
+    right: 80px;
+    background: rgba(200,200,200,0.8);
     height: 40px;
     width: 40px;
     z-index: 2;
     border: solid 2px #AAAAAA;
     cursor: pointer;
+    img {
+      width: 30px;
+      height: 30px;
+      position: relative;
+      top: 5px;
+      left: 5px;
+      opacity: 1.0;
+      &.hidden {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  #mylocation {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(200,200,200,0.8);
+    height: 40px;
+    width: 40px;
+    z-index: 2;
+    border: solid 2px #AAAAAA;
+    cursor: pointer;
+    img {
+      width: 30px;
+      height: 30px;
+      position: relative;
+      top: 5px;
+      left: 5px;
+    }
   }
 }
 

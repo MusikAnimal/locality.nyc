@@ -26,6 +26,11 @@ $(document).ready((function() {
     $("#address").val("").focus();
   });
 
+  $("#show_hide_zones").click(function() {
+    $(this).find("img").toggleClass("hidden");
+    toggleZones();
+  });
+
   $("#mylocation").click(function() {
     $.when(getCurrentPosition()).pipe(setCurrentPosition).then($.proxy(function(results,status) {
       match = results[0];
@@ -77,6 +82,9 @@ function infoNeighborhood(lat,lng) {
     var html = "";
     for(var i in matches) {
       html += matches[i].infowindow.content;
+      if(!matches[i].map) {
+        matches[i].setMap(map);
+      }
     }
     var latLng = new google.maps.LatLng(lat,lng);
     map.setCenter(latLng);
