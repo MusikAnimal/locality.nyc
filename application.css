@@ -26,7 +26,6 @@ body {
       color: inherit;
       width: 18px;
       height: 18px;
-      background-size: 18px;
       position: absolute;
       top: 4px;
       right: 59px;
@@ -104,9 +103,19 @@ body {
       margin-bottom: 5px; }
   body form input {
     float: left;
-    width: calc(100% - 67px); }
+    width: 80%;
+    width: calc(100% - 55px);
+    font-size: 14px;
+    height: inherit;
+    line-height: inherit; }
   body form #reset_address {
-    right: 71px; }
-
-  footer {
+    right: 60px;
+    top: 5px; }
+  body form button {
+    height: 28px; }
+  body #show_hide_zones {
+    right: 55px; }
+  body #mylocation {
+    right: 5px; }
+  body footer {
     display: none; } }

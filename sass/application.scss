@@ -32,7 +32,6 @@ body {
       color: inherit;
       width: 18px;
       height: 18px;
-      background-size: 18px;
       position: absolute;
       top: 4px;
       right: 59px;
@@ -130,14 +129,28 @@ body {
     form {
       input {
         float: left;
-        width: calc(100% - 67px);
+        width: 80%;
+        width: calc(100% - 55px);
+        font-size: 14px;
+        height: inherit;
+        line-height: inherit;
       }
       #reset_address {
-        right: 71px;
+        right: 60px;
+        top: 5px;
+      }
+      button {
+        height: 28px;
       }
     }
-  }
-  footer {
-    display: none;
+    #show_hide_zones {
+      right: 55px;
+    }
+    #mylocation {
+      right: 5px;
+    }
+    footer {
+      display: none;
+    }
   }
 }

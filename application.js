@@ -33,14 +33,48 @@ $(document).ready((function() {
 
   $("#mylocation").click(function() {
     $.when(getCurrentPosition()).pipe(setCurrentPosition).then($.proxy(function(results,status) {
-      match = results[0];
-      $("#address").val(match.formatted_address);
+      var match = results[0];
+
+      var abbrAddress = match.address_components[0].short_name + " " + match.address_components[1].short_name;
+      if(match.address_components[2].short_name !== "New York") {
+        abbrAddress += ", " + match.address_components[2].short_name;
+      }
+
+      $("#address").val(abbrAddress);
       infoNeighborhood(match.geometry.location.lat(),match.geometry.location.lng());
     },this));
   });
 
   $("a[href='#']").click(function(e) {
     e.preventDefault();
+  });
+
+  // restrict boundaries
+  var allowedBounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(40.3518381,-74.0140133), 
+    new google.maps.LatLng(40.9071533,-73.7153225)
+  );
+  google.maps.event.addListener(map, 'dragend', function() {
+    if(allowedBounds.contains(map.getCenter())) return;
+    var c = map.getCenter();
+    var x = c.lng();
+    var y = c.lat();
+    var maxX = allowedBounds.getNorthEast().lng();
+    var maxY = allowedBounds.getNorthEast().lat();
+    var minX = allowedBounds.getSouthWest().lng();
+    var minY = allowedBounds.getSouthWest().lat();
+
+    if (x < minX) x = minX;
+    if (x > maxX) x = maxX;
+    if (y < minY) y = minY;
+    if (y > maxY) y = maxY;
+
+    map.setCenter(new google.maps.LatLng(y, x));
+  });
+
+  // Limit the zoom level
+  google.maps.event.addListener(map, 'zoom_changed', function() {
+   if (map.getZoom() < 10) map.setZoom(10);
   });
 }));
 
@@ -105,7 +139,9 @@ function initMap() {
   var mapOptions = {
     center: new google.maps.LatLng(40.7902185, -73.945692),
     zoom: 12,
-    streetViewControl : false
+    streetViewControl : false,
+    mapTypeControl : false,
+    rotateControl : true
   };
 
   // if(isMobile) {
