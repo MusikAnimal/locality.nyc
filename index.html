@@ -6,8 +6,7 @@
     <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBhmjsRow4-pvZUzsPdYtoS6hyGAu-HqfI&amp;v=3.exp&amp;sensor=true'></script>
     <script src='neighborhoods.js'></script>
     <script src='application.js'></script>
-    <!-- %script{src: "cordova.js"} -->
-    <script src='init.js'></script>
+    <script src='cordova.js'></script>
     <link href='application.css' rel='stylesheet' type='text/css'>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' name='viewport'>
   </head>
@@ -33,7 +32,18 @@
     <main>
       <div id='canvas'></div>
     </main>
-    <!-- %script -->
-    <!-- app.initialize(); -->
+    <script>
+      try {
+        app.initialize();
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = 'cordova.js';
+        head.appendChild(script);
+        script.src = 'init.js';
+        head.appendChild(script);
+      } catch(e) {
+        console.log("no cordova this time, people");
+      }
+    </script>
   </body>
 </html>

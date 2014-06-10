@@ -6,8 +6,7 @@
     %script{src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBhmjsRow4-pvZUzsPdYtoS6hyGAu-HqfI&v=3.exp&sensor=true"}
     %script{src: "neighborhoods.js"}
     %script{src: "application.js"}
-    / %script{src: "cordova.js"}
-    %script{src: "init.js"}
+    %script{src: "cordova.js"}
     %link{rel: "stylesheet", href: "application.css", type: "text/css"}
     %meta{name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"}
   %body
@@ -27,5 +26,15 @@
     %footer
     %main
       %div#canvas
-    / %script
-    /   app.initialize();
+    :javascript
+      try {
+        app.initialize();
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.src = 'cordova.js';
+        head.appendChild(script);
+        script.src = 'init.js';
+        head.appendChild(script);
+      } catch(e) {
+        console.log("no cordova this time, people");
+      }
