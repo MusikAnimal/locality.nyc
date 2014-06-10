@@ -2,3 +2,6 @@
 config.codekit
 .sass-cache
 .codekit-cache
+cordova*
+init.js
+plugins
