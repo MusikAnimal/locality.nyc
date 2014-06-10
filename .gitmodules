@@ -1,0 +1,3 @@
+[submodule "nyc-zone-data"]
+	path = nyc-zone-data
+	url = https://github.com/MusikAnimal/nyc-zone-data.git
