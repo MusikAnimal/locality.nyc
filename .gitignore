@@ -5,3 +5,4 @@ config.codekit
 cordova*
 init.js
 plugins
+*.swp

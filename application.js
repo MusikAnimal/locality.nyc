@@ -32,7 +32,17 @@ $(document).ready((function() {
   });
 
   $("#mylocation").click(function() {
+    $("#address").val("Fetching location...");
+    var timeout1 = setTimeout(function() {
+      $("#address").val("Still working...");
+    }, 4000);
+    var timeout2 = setTimeout(function() {
+      $("#address").val("");
+      alert("Error fetching location");
+    }, 8000);
     $.when(getCurrentPosition()).pipe(setCurrentPosition).then($.proxy(function(results,status) {
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
       var match = results[0];
 
       var abbrAddress = match.address_components[0].short_name + " " + match.address_components[1].short_name;
@@ -51,7 +61,7 @@ $(document).ready((function() {
 
   // restrict boundaries
   var allowedBounds = new google.maps.LatLngBounds(
-    new google.maps.LatLng(40.3518381,-74.0140133), 
+    new google.maps.LatLng(40.3518381,-74.0140133),
     new google.maps.LatLng(40.9071533,-73.7153225)
   );
   google.maps.event.addListener(map, 'dragend', function() {
@@ -110,7 +120,7 @@ function getNeighborhood(lat,lng) {
   });
 }
 
-function infoNeighborhood(lat,lng) {
+function infoNeighborhood(lat,lng,skipZoom) {
   var matches = getNeighborhood(lat,lng);
   if(matches) {
     var html = "";
@@ -121,8 +131,10 @@ function infoNeighborhood(lat,lng) {
       }
     }
     var latLng = new google.maps.LatLng(lat,lng);
-    map.setCenter(latLng);
-    map.setZoom(15);
+    if(skipZoom) {
+      map.setCenter(latLng);
+      map.setZoom(15);
+    }
     openedInfo.close();
     openedInfo = new google.maps.InfoWindow({
       content : html
@@ -167,9 +179,9 @@ function setUserCoords() {
 function setUpZones() {
   $.each(neighborhoods, function(i,zone) {
     var paths = [];
-    for(var i in zone.coords) {
-      var lat = zone.coords[i].lat;
-      var lng = zone.coords[i].lng;
+    for(var j in zone.coords) {
+      var lat = zone.coords[j].lat;
+      var lng = zone.coords[j].lng;
       paths.push(new google.maps.LatLng(lat,lng));
     }
 
@@ -195,11 +207,12 @@ function setUpZones() {
 
 function showInfo(e) {
   openedInfo.close();
-  if(openedInfo.name != this.infowindow.name) {
-    this.infowindow.setPosition(e.latLng);
-    this.infowindow.open(map);
-    openedInfo = this.infowindow;
-  }
+  infoNeighborhood(e.latLng.lat(),e.latLng.lng());
+  // if(openedInfo.name != this.infowindow.name) {
+  //   this.infowindow.setPosition(e.latLng);
+  //   this.infowindow.open(map);
+  //   openedInfo = this.infowindow;
+  // }
 }
 
 function toggleZones() {
@@ -223,7 +236,7 @@ function createMarker(latlng, content) {
   return marker;
 }
 
-google.maps.Map.prototype.markers = new Array();
+google.maps.Map.prototype.markers = [];
 google.maps.Map.prototype.addMarker = function(marker) {
   this.markers[this.markers.length] = marker;
 };
