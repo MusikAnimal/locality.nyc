@@ -59,15 +59,6 @@ $(document).ready((function() {
     e.preventDefault();
   });
 
-  $("body").on("click", "a", function(e) {
-    var href = $(this).attr("href");
-    if(href.match(/^http/) || mobileCheck()) {
-      window.open(href, "_system");
-      e.preventDefault();
-      return false;
-    }
-  });
-
   // restrict boundaries
   var allowedBounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(40.3518381,-74.0140133),

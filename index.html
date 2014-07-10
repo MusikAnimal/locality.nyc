@@ -41,6 +41,15 @@
         head.appendChild(script);
         script.src = 'init.js';
         head.appendChild(script);
+      
+        $("body").on("click", "a", function(e) {
+          var href = $(this).attr("href");
+          if(href.match(/^http/) || mobileCheck()) {
+            window.open(href, "_system");
+            e.preventDefault();
+            return false;
+          }
+        });
       } catch(e) {
         console.log("no cordova this time, people");
       }
