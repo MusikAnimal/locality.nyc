@@ -11,6 +11,10 @@ $(document).ready((function() {
 
   initMap();
 
+  $("#canvas").on('click',function(e) {
+    $("header").trigger('click');
+  });
+
   $("#find_address").submit(function(e) {
     var address = $("#address").val();
     var gc = new google.maps.Geocoder();
