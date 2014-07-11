@@ -135,7 +135,7 @@ function infoNeighborhood(lat,lng,skipZoom) {
       }
     }
     var latLng = new google.maps.LatLng(lat,lng);
-    if(skipZoom) {
+    if(!skipZoom) {
       map.setCenter(latLng);
       map.setZoom(15);
     }
@@ -213,7 +213,7 @@ function setUpZones() {
 
 function showInfo(e) {
   openedInfo.close();
-  infoNeighborhood(e.latLng.lat(),e.latLng.lng());
+  infoNeighborhood(e.latLng.lat(),e.latLng.lng(),true);
   // if(openedInfo.name != this.infowindow.name) {
   //   this.infowindow.setPosition(e.latLng);
   //   this.infowindow.open(map);
