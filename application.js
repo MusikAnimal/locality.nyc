@@ -12,7 +12,7 @@ $(document).ready((function() {
   initMap();
 
   $("#canvas").on('click',function(e) {
-    $("header").trigger('click');
+    $("header").blur();
   });
 
   $("#find_address").submit(function(e) {
