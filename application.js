@@ -195,7 +195,9 @@ function setUpZones() {
     });
 
     poly.infowindow = new google.maps.InfoWindow({
-      content : "<div style='font-weight:bold; font-size:14px; color: black'>" + zone.name + "</div>",
+      content : "<div class='zone-name'>" +
+                "<span style='background:#" + zone.color + "'></span>" + zone.name +
+                "</div>",
       name : i
     });
     poly.setMap(map);

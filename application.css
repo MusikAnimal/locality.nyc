@@ -91,6 +91,17 @@ body {
       position: relative;
       top: 5px;
       left: 5px; }
+  body .zone-name {
+    font-weight: bold;
+    font-size: 14px;
+    color: black; }
+    body .zone-name span {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      margin-right: 4px;
+      position: relative;
+      top: 2px; }
   body .gm-style-iw ~ div img {
     display: none; }
   body .gm-style-iw ~ div::after {

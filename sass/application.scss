@@ -116,6 +116,19 @@ body {
   }
 
   // infowindow stuff
+  .zone-name {
+    font-weight: bold;
+    font-size: 14px;
+    color: black;
+    span {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      margin-right: 4px;
+      position: relative;
+      top: 2px;
+    }
+  }
   .gm-style-iw ~ div {
     img {
       display: none;
