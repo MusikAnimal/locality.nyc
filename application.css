@@ -102,6 +102,9 @@ body {
       margin-right: 4px;
       position: relative;
       top: 2px; }
+    body .zone-name a {
+      margin-left: 4px;
+      color: #666666; }
   body .gm-style-iw ~ div img {
     display: none; }
   body .gm-style-iw ~ div::after {

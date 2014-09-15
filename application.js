@@ -59,10 +59,6 @@ $(document).ready((function() {
     },this));
   });
 
-  $("a[href='#']").click(function(e) {
-    e.preventDefault();
-  });
-
   // restrict boundaries
   var allowedBounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(40.3518381,-74.0140133),
@@ -201,10 +197,13 @@ function setUpZones() {
     poly.infowindow = new google.maps.InfoWindow({
       content : "<div class='zone-name'>" +
                 "<span style='background:#" + zone.color + "'></span>" + zone.name +
+                "<a class='learn-more' href='#'>Learn more</a>" +
                 "</div>",
       name : i
     });
     poly.setMap(map);
+    // FIXME: we already have the zone
+    // pass it into showInfo so we don't have to query the data again
     google.maps.event.addListener(poly, "click", showInfo);
 
     polyList.push(poly);
