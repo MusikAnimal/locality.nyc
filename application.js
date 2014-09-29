@@ -197,7 +197,7 @@ function setUpZones() {
     poly.infowindow = new google.maps.InfoWindow({
       content : "<div class='zone-name'>" +
                 "<span style='background:#" + zone.color + "'></span>" + zone.name +
-                "<a class='learn-more' href='#'>Learn more</a>" +
+                // "<a class='learn-more' href='#'>Learn more</a>" +
                 "</div>",
       name : i
     });
