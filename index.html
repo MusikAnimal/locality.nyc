@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NYC Neighborhoods</title>
+    <title>locality.nyc</title>
     <script src='jquery.min.js'></script>
     <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBhmjsRow4-pvZUzsPdYtoS6hyGAu-HqfI&amp;v=3.exp&amp;sensor=true'></script>
     <script src='nyc-zone-data/neighborhoods.js'></script>
@@ -13,7 +13,7 @@
   <body>
     <section id='controls'>
       <header>
-        <h1>NYC Neighborhoods</h1>
+        <h1>locality.nyc</h1>
         <form id='find_address'>
           <input id='address' placeholder='Enter an address' required type='text'>
           <a href='#' id='reset_address'>&#10005;</a>
@@ -41,7 +41,7 @@
         head.appendChild(script);
         script.src = 'init.js';
         head.appendChild(script);
-      
+
         $("body").on("click", "a", function(e) {
           var href = $(this).attr("href");
           if(href.match(/^http/) || mobileCheck()) {
