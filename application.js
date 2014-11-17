@@ -195,7 +195,7 @@ function setUpZones() {
 
     var poly = new google.maps.Polygon({
       paths: paths,
-      strokeColor: "#000000",
+      strokeColor: "black",
       strokeOpacity: 0.25,
       strokeWeight: 2,
       fillColor: '#'+zone.color,
@@ -213,9 +213,19 @@ function setUpZones() {
     // FIXME: we already have the zone
     // pass it into showInfo so we don't have to query the data again
     google.maps.event.addListener(poly, "click", showInfo);
+    google.maps.event.addListener(poly, "mouseover", highlight.bind(this, poly));
+    google.maps.event.addListener(poly, "mouseout", unhighlight.bind(this, poly, zone));
 
     polyList.push(poly);
   });
+}
+
+function highlight(poly) {
+  poly.setOptions({strokeWeight: 3.0, strokeColor: 'white', strokeOpacity: 1});
+}
+
+function unhighlight(poly) {
+  poly.setOptions({strokeWeight: 2.0, strokeColor: 'black', strokeOpacity: 0.25});
 }
 
 function showInfo(e) {
