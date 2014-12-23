@@ -16,7 +16,7 @@
         <h1>locality.nyc</h1>
         <form id='find_address'>
           <input id='address' placeholder='Enter an address' required type='text'>
-          <a href='#' id='reset_address'>&#10005;</a>
+          <a href='javascript:' id='reset_address'>&#10005;</a>
           <button></button>
         </form>
       </header>
@@ -41,7 +41,7 @@
         head.appendChild(script);
         script.src = 'init.js';
         head.appendChild(script);
-
+      
         $("body").on("click", "a", function(e) {
           var href = $(this).attr("href");
           if(href.match(/^http/) || mobileCheck()) {

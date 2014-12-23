@@ -69,7 +69,7 @@ $(document).ready((function() {
 
   // restrict boundaries
   var allowedBounds = new google.maps.LatLngBounds(
-    new google.maps.LatLng(40.3518381,-74.0140133),
+    new google.maps.LatLng(40.3518381,-74.3515920),
     new google.maps.LatLng(40.9071533,-73.7153225)
   );
   google.maps.event.addListener(map, 'dragend', function() {
