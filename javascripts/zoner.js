@@ -35,7 +35,7 @@ var Zoner = {
       google.maps.event.addListener(poly, "mouseover", highlight.bind(this, poly));
       google.maps.event.addListener(poly, "mouseout", unhighlight.bind(this, poly, zone));
       google.maps.event.addListener(poly, "click", function(e) {
-        Zoner.showInfo(e.latLng.lat(),e.latLng.lng());
+        Zoner.showInfo(e.latLng.lat(),e.latLng.lng(),false);
       });
     });
   },
@@ -81,7 +81,7 @@ var Zoner = {
     var latLng = getLatLng(lat,lng);
     var matches = Zoner.getNeighborhoods(latLng);
     if(!matches) {
-      return alert("Not found :(");
+      return alert("Nieghborhood not established");
     }
 
     openedInfo = new google.maps.InfoWindow({
@@ -89,6 +89,14 @@ var Zoner = {
     });
     openedInfo.setPosition(latLng);
     openedInfo.open(map);
+
+    $.each(matches, function(i, zone) {
+      $(".zone-link[data-index="+zone.polyIndex+"]").hover(function() {
+        highlight(zone.polygon);
+      }.bind(this), function() {
+        unhighlight(zone.polygon);
+      }.bind(this));
+    });
   },
 
   showInfoAndZoom: function(lat,lng) {
