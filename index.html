@@ -15,7 +15,7 @@
       <header>
         <h1>locality.nyc</h1>
         <form id='find_address'>
-          <input id='address' placeholder='Enter an address' required type='text'>
+          <input id='address' placeholder='Enter address, ZIP or neighborhood' required type='text'>
           <a href='javascript:' id='reset_address'>&#10005;</a>
           <button></button>
         </form>
@@ -51,7 +51,7 @@
           }
         });
       } catch(e) {
-        console.log("no cordova this time, people");
+        $.noop();
       }
       
       var newNeighborhoods = [];

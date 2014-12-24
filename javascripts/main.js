@@ -36,11 +36,7 @@ $(document).ready((function() {
       clearTimeout(timeout2);
       var match = results[0];
 
-      var abbrAddress = match.address_components[0].short_name + " " + match.address_components[1].short_name;
-      if(match.address_components[2].short_name !== "New York") {
-        abbrAddress += ", " + match.address_components[2].short_name;
-      }
-
+      var abbrAddress = Zoner.getFormattedAddress(match);
       $("#address").val(abbrAddress);
       var latLng = getLatLng(match.geometry.location.lat(),match.geometry.location.lng());
       Zoner.showInfoAndZoom(latLng);

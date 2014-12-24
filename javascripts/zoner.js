@@ -48,6 +48,33 @@ var Zoner = {
     });
   },
 
+  getFormattedAddress: function(locality) {
+    // FIXME: use our neighborhood address, not what Google gives you
+    var abbrAddress = locality.address_components[0].short_name + " " + locality.address_components[1].short_name;
+    if(locality.address_components[2].short_name !== "New York") {
+      abbrAddress += ", " + locality.address_components[2].short_name;
+    }
+    return abbrAddress;
+  },
+
+  isInNYC: function(locality) {
+    if(!locality.address_components.length) {
+      return false;
+    }
+    for(var i=0; i<locality.address_components.length; i++) {
+      if(locality.address_components[i].types.indexOf("administrative_area_level_2") >= 0) {
+        return !!locality.address_components[i].long_name.match(/New York County|Kings County|Queens County|Bronx County|Richmond County/i);
+      }
+      if(locality.address_components[i].types.indexOf("locality") >= 0) {
+        return !!locality.address_components[i].long_name.match(/New York/i);
+      }
+      if(locality.address_components[i].types.indexOf("sublocality") >= 0) {
+        return !!locality.address_components[i].long_name.match(/Manhattan|Brooklyn|Queens|Bronx|Staten Island/i);
+      }
+    }
+    return false;
+  },
+
   showInfo: function(lat,lng,zoomTo) {
     openedInfo.close();
 

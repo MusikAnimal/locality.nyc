@@ -14,7 +14,7 @@
       %header
         %h1 locality.nyc
         %form#find_address
-          %input#address{type: "text", placeholder: "Enter an address", required: true}
+          %input#address{type: "text", placeholder: "Enter address, ZIP or neighborhood", required: true}
           %a#reset_address{href: "javascript:"}<
             &#10005;
           %button
@@ -45,7 +45,7 @@
           }
         });
       } catch(e) {
-        console.log("no cordova this time, people");
+        $.noop();
       }
 
       var newNeighborhoods = [];
