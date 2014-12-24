@@ -2,10 +2,10 @@
 <html>
   <head>
     <title>locality.nyc</title>
-    <script src='jquery.min.js'></script>
     <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBhmjsRow4-pvZUzsPdYtoS6hyGAu-HqfI&amp;v=3.exp&amp;sensor=true'></script>
     <script src='nyc-zone-data/neighborhoods.js'></script>
     <script src='application.js'></script>
+    <script src='data.js'></script>
     <script src='cordova.js'></script>
     <link href='application.css' rel='stylesheet' type='text/css'>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' name='viewport'>
@@ -53,6 +53,20 @@
       } catch(e) {
         console.log("no cordova this time, people");
       }
+      
+      var newNeighborhoods = [];
+      $.each(data.features, function(index, feat) {
+        var color = feat.properties.styleUrl.split("-")[1];
+        var coords = [];
+        $.each(feat.geometry.coordinates[0], function(j, coord) {
+          coords.push({lat: coord[1], lng: coord[0]});
+        });
+        newNeighborhoods.push({
+          name : feat.properties.name,
+          coords : coords,
+          color : color
+        });
+      });
     </script>
   </body>
 </html>

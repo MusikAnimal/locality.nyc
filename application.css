@@ -46,7 +46,7 @@ body {
     padding: 6px 24px 6px 6px;
     float: left; }
   body button {
-    background: #eeeeee url("images/search.png") no-repeat center;
+    background: #EEE url("images/search.png") no-repeat center;
     background-size: 20px;
     height: 26px;
     margin: 0px;
@@ -99,11 +99,10 @@ body {
       display: inline-block;
       width: 14px;
       height: 14px;
-      margin-right: 4px;
       position: relative;
       top: 2px; }
     body .zone-name a {
-      margin-left: 4px;
+      margin-left: 2px;
       color: #666666; }
   body .gm-style-iw ~ div img {
     display: none; }
