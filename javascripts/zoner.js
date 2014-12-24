@@ -48,7 +48,7 @@ var Zoner = {
     });
   },
 
-  showInfo: function(lat,lng) {
+  showInfo: function(lat,lng,zoomTo) {
     openedInfo.close();
 
     var latLng = getLatLng(lat,lng);
@@ -62,5 +62,10 @@ var Zoner = {
     });
     openedInfo.setPosition(latLng);
     openedInfo.open(map);
+  },
+
+  showInfoAndZoom: function(lat,lng) {
+    Zoner.showInfo(lat,lng);
+    setCenter(lat,lng);
   }
 };

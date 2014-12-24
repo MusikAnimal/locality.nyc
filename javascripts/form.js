@@ -9,12 +9,13 @@ $(document).ready(function() {
     gc.geocode({'address' : address}, function(results) {
       var lat = results[0].geometry.location.lat();
       var lng = results[0].geometry.location.lng();
-      infoNeighborhood(lat,lng);
+      Zoner.showInfoAndZoom(lat,lng);
     });
     e.preventDefault();
   });
 
   $("#reset_address").click(function() {
     $("#address").val("").focus();
+    openedInfo.close();
   });
 });

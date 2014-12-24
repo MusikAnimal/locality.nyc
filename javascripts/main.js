@@ -43,8 +43,7 @@ $(document).ready((function() {
 
       $("#address").val(abbrAddress);
       var latLng = getLatLng(match.geometry.location.lat(),match.geometry.location.lng());
-      Zoner.showInfo(latLng);
-      setCenter(latLng);
+      Zoner.showInfoAndZoom(latLng);
     },this));
   });
 }));
