@@ -69,11 +69,11 @@ function setCurrentPosition(position) {
 }
 
 function toggleZones() {
-  $.each(polyList, function(index, el) {
+  $.each(Zoner.polyList, function(index, el) {
     if(polyIsVisible) {
-      el.setMap(null);
+      el.polygon.setMap(null);
     } else {
-      el.setMap(map);
+      el.polygon.setMap(map);
     }
   });
   polyIsVisible = !polyIsVisible;
