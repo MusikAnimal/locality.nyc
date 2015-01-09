@@ -2,6 +2,16 @@
 
 $nav_background: rgba(200,200,200,0.8);
 
+.gm-style-iw {
+  height: 100% !important;
+  overflow: hidden !important;
+  & > div {
+    & > div {
+      overflow: hidden !important;
+    }
+  }
+}
+
 body {
   font-family: sans-serif;
 
