@@ -3,42 +3,61 @@
   <head>
     <title>locality.nyc</title>
     <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBhmjsRow4-pvZUzsPdYtoS6hyGAu-HqfI&amp;v=3.exp&amp;sensor=true'></script>
-    <script src='nyc-zone-data/neighborhoods.js'></script>
     <script src='application.js'></script>
     <script src='data.js'></script>
-    <script src='cordova.js'></script>
+    <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
     <link href='application.css' rel='stylesheet' type='text/css'>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' name='viewport'>
   </head>
-  <body>
-    <section id='controls'>
+  <body itemscope itemtype='http://schema.org/Map'>
+    <nav>
       <header>
-        <h1>locality.nyc</h1>
-        <form id='find_address'>
-          <input id='address' placeholder='Enter address, ZIP or neighborhood' required type='text'>
-          <a href='javascript:' id='reset_address'>&#10005;</a>
-          <button></button>
-        </form>
+        <h1 itemprop='name'>locality.nyc</h1>
       </header>
-      <div id='info'></div>
+      <form id='find_address'>
+        <input id='address' placeholder='Enter address, ZIP or neighborhood' required type='text'>
+        <a href='javascript:' id='reset_address'>&#10005;</a>
+        <button></button>
+      </form>
+      <div class='neighborhood-selector'>
+        <span class='borough-select push-state' data-url='manhattan'>Manhattan</span>
+        <span class='borough-select push-state' data-url='brooklyn'>Brooklyn</span>
+        <span class='borough-select push-state' data-url='queens'>Queens</span>
+        <span class='borough-select push-state' data-url='bronx'>The Bronx</span>
+        <span class='borough-select' data-url='staten_island'>Staten Island</span>
+      </div>
+    </nav>
+    <section id='info'></section>
+    <section>
       <div id='show_hide_zones'>
         <img src='images/layers.png'>
       </div>
       <div id='mylocation'>
         <img src='images/mylocation.png'>
       </div>
+      <div>
+        <div id='zoom_in'>
+          <img src='images/plus.png'>
+        </div>
+        <div id='zoom_out'>
+          <img src='images/minus.png'>
+        </div>
+      </div>
     </section>
-    <footer></footer>
+    <footer itemscope itemtype='http://schema.org/WPFooter' role='contentinfo'>
+      Copyright &copy; 2014-2015 MusikAnimal
+    </footer>
     <main>
       <div id='canvas'></div>
     </main>
     <script>
       try {
-        app.initialize();
         var head = document.getElementsByTagName('head')[0];
         var script = document.createElement('script');
         script.src = 'cordova.js';
         head.appendChild(script);
+      
+        app.initialize();
         script.src = 'init.js';
         head.appendChild(script);
       
@@ -53,20 +72,6 @@
       } catch(e) {
         $.noop();
       }
-      
-      var newNeighborhoods = [];
-      $.each(data.features, function(index, feat) {
-        var color = feat.properties.styleUrl.split("-")[1];
-        var coords = [];
-        $.each(feat.geometry.coordinates[0], function(j, coord) {
-          coords.push({lat: coord[1], lng: coord[0]});
-        });
-        newNeighborhoods.push({
-          name : feat.properties.name,
-          coords : coords,
-          color : color
-        });
-      });
     </script>
   </body>
 </html>

@@ -16,32 +16,6 @@ $(document).ready((function() {
   }
 
   initMap();
-
-  $("#show_hide_zones").click(function() {
-    $(this).find("img").toggleClass("hidden");
-    toggleZones();
-  });
-
-  $("#mylocation").click(function() {
-    $("#address").val("Fetching location...");
-    var timeout1 = setTimeout(function() {
-      $("#address").val("Still working...");
-    }, 4000);
-    var timeout2 = setTimeout(function() {
-      $("#address").val("");
-      alert("Error fetching location");
-    }, 8000);
-    $.when(getCurrentPosition()).pipe(setCurrentPosition).then($.proxy(function(results,status) {
-      clearTimeout(timeout1);
-      clearTimeout(timeout2);
-      var match = results[0];
-
-      var abbrAddress = Zoner.getFormattedAddress(match);
-      $("#address").val(abbrAddress);
-      var latLng = getLatLng(match.geometry.location.lat(),match.geometry.location.lng());
-      Zoner.showInfoAndZoom(latLng);
-    },this));
-  });
 }));
 
 function getCurrentPosition(options) {
@@ -66,17 +40,6 @@ function setCurrentPosition(position) {
   geoCoder.geocode({ location: latlng }, deferred.resolve);
 
   return deferred.promise();
-}
-
-function toggleZones() {
-  $.each(Zoner.polyList, function(index, el) {
-    if(polyIsVisible) {
-      el.polygon.setMap(null);
-    } else {
-      el.polygon.setMap(map);
-    }
-  });
-  polyIsVisible = !polyIsVisible;
 }
 
 // function mobileCheck() {

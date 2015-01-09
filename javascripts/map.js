@@ -2,9 +2,7 @@ function initMap() {
   var mapOptions = {
     center: new google.maps.LatLng(40.7399915, -73.8764654),
     zoom: 11,
-    streetViewControl : false,
-    mapTypeControl : false,
-    rotateControl : true
+    disableDefaultUI: true
   };
 
   map = new google.maps.Map($("#canvas")[0], mapOptions);
@@ -32,13 +30,27 @@ function initMap() {
     map.setCenter(new google.maps.LatLng(y, x));
   });
 
-  // Limit the zoom level
-  google.maps.event.addListener(map, 'zoom_changed', function() {
-   if (map.getZoom() < 10) map.setZoom(10);
-  });
+  addListeners();
 
   // setUserCoords();
   Zoner.plot();
+}
+
+function addListeners() {
+  // Limit the zoom level
+  google.maps.event.addListener(map, 'zoom_changed', function() {
+    if (map.getZoom() < 10) map.setZoom(10);
+  });
+  $("#zoom_out").click(function() {
+    if(map.getZoom() === 10) return false
+    map.setZoom(map.getZoom()-1);
+  });
+  $("#zoom_in").click(function() {
+    map.setZoom(map.getZoom()+1);
+  });
+  $(document).on("reset", function() {
+    openedInfo.close();
+  });
 }
 
 function createMarker(latlng, content) {
@@ -65,10 +77,10 @@ function highlight(poly) {
   poly.setOptions({strokeWeight: 3.0, strokeColor: 'white', strokeOpacity: 1});
 }
 
-function setCenter(lat,lng) {
+function setCenter(lat,lng,zoom) {
   var latLng = getLatLng(lat,lng);
   map.setCenter(latLng);
-  map.setZoom(15);
+  map.setZoom(zoom || 15);
 }
 
 function setUserCoords() {

@@ -5,8 +5,19 @@ $(document).ready(function() {
 
   $("#find_address").submit(function(e) {
     e.preventDefault();
+    $(document).trigger("reset", {skipClearForm: true});
+
     var address = $("#address").val(),
-        gc = new google.maps.Geocoder();
+        query = address.toLowerCase().replace(/_/g,' ');
+
+    for(var key in boroughs) {
+      var borough = boroughs[key];
+      if(query === key || borough.alternate_names.indexOf(query) !== -1) {
+        return Zoner.showBorough(key);
+      }
+    }
+
+    var gc = new google.maps.Geocoder();
 
     gc.geocode({'address' : address}, function(results) {
       var locality = results[0];
@@ -30,7 +41,16 @@ $(document).ready(function() {
   });
 
   $("#reset_address").click(function() {
-    $("#address").val("").focus();
-    openedInfo.close();
+    $(document).trigger("reset");
+  });
+
+  $(document).on("reset", function(e, opts) {
+    if(!opts) opts = {};
+    if(!opts.skipClearForm) {
+      $("#address").val("").focus();
+    }
+    if(!opts.skipZoneReset) {
+      Zoner.reset();
+    }
   });
 });

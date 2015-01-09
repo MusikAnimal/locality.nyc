@@ -1,5 +1,6 @@
 var Zoner = {
   polyList: [],
+  filteredState: false,
 
   plot: function() {
     // TODO: create module for neighborhood
@@ -23,6 +24,7 @@ var Zoner = {
 
       var polyZone = {
         name: zone.name,
+        borough : zone.borough,
         color: zone.color,
         polyIndex: i,
         polygon: poly
@@ -75,13 +77,43 @@ var Zoner = {
     return false;
   },
 
+  reset: function() {
+    $.each(Zoner.polyList, function(index, el) {
+      el.polygon.filtered = false;
+      el.polygon.setMap(map);
+    });
+    Zoner.filteredState = false;
+  },
+
+  showBorough: function(name) {
+    if(name === "staten_island") {
+      return alert("Coming soon!");
+    }
+    $.each(Zoner.polyList, function(index, el) {
+      if(el.borough.toLowerCase() === name) {
+        el.polygon.filtered = true;
+        el.polygon.setMap(map);
+      } else {
+        el.polygon.filtered = false;
+        el.polygon.setMap(null);
+      }
+    });
+    var center = boroughs[name];
+    setCenter(center.lat,center.lng,11);
+    $button = $(".borough-select[data-url='"+name+"']");
+    // $button.css("border",0);
+    $button.removeClass("hidden").siblings().addClass("hidden");
+    $("#address").val($button.text());
+    Zoner.filteredState = true;
+  },
+
   showInfo: function(lat,lng,zoomTo) {
     openedInfo.close();
 
     var latLng = getLatLng(lat,lng);
     var matches = Zoner.getNeighborhoods(latLng);
     if(!matches) {
-      return alert("Nieghborhood not established");
+      return alert("Neighborhood not established");
     }
 
     openedInfo = new google.maps.InfoWindow({
@@ -102,5 +134,18 @@ var Zoner = {
   showInfoAndZoom: function(lat,lng) {
     Zoner.showInfo(lat,lng);
     setCenter(lat,lng);
+  },
+
+  toggleZones: function() {
+    $.each(Zoner.polyList, function(index, el) {
+      if(el.polygon.map) {
+        el.polygon.setMap(null);
+      } else if(el.polygon.filtered && Zoner.filteredState) {
+        el.polygon.setMap(map);
+      } else if(!Zoner.filteredState) {
+        el.polygon.setMap(map);
+      }
+    });
+    polyIsVisible = !polyIsVisible;
   }
 };

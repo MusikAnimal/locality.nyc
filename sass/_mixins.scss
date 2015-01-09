@@ -1,0 +1,38 @@
+@mixin clearfix {
+  clear: both;
+  &::after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+@mixin prefix($prop, $val) {
+  @each $pre in -webkit-, -moz-, -ms-, -o- {
+    #{$pre}#{$prop}: #{$val};
+  }
+  #{$prop}: #{$val};
+}
+
+@mixin control_button {
+  background: rgba(238,238,238,0.9);
+  border: solid 2px #AAAAAA;
+  cursor: pointer;
+  height: 30px;
+  position: absolute;
+  right: 10px;
+  width: 30px;
+  z-index: 2;
+  &:hover {
+    background: rgba(221,221,221,0.9);
+  }
+  img {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 5px;
+    left: 5px;
+  }
+}

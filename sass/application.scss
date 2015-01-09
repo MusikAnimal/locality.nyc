@@ -1,32 +1,66 @@
+@import 'mixins';
+
+$nav_background: rgba(200,200,200,0.8);
+
 body {
   font-family: sans-serif;
 
   #canvas {
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     height: 100%;
     width: 100%;
     z-index: 1;
     line-height: 1em;
   }
-  header {
+  nav {
+    background: $nav_background;
+    border: solid 1px #333333;
+    left: 20px;
+    padding: 20px;
     position: absolute;
     top: 20px;
-    left: 100px;
-    background: rgba(200,200,200,0.8);
+    width: 375px;
     z-index: 2;
-    border: solid 1px #333333;
-    padding: 20px;
-
+    .neighborhood-selector {
+      display: table;
+      font-size: 12px;
+      margin-top: 10px;
+      width: 100%;
+      span {
+        background: #EEE;
+        border-left: solid 3px $nav_background;
+        border-right: solid 3px $nav_background;
+        color: #696969;
+        cursor: pointer;
+        display: table-cell;
+        padding: 5px 0;
+        text-align: center;
+        // @include prefix(transition,width 2s);
+        &:hover {
+          background: #DDD;
+        }
+        &:first-child {
+          border-left: 0;
+        }
+        &:last-child {
+          border-right: 0;
+        }
+      }
+    }
+  }
+  header {
     h1 {
-      margin-top: 0px;
-      font-size: 18px;
+      font-family: 'Arvo', serif;
+      margin-top: 0;
+      margin-bottom: 5px;
     }
   }
   form {
+    display: block;
     position: relative;
-
+    @include clearfix;
     #reset_address {
       display: block;
       color: inherit;
@@ -40,14 +74,25 @@ body {
       line-height: 20px;
       text-align: center;
     }
+    button {
+      background-image: url('images/search.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 20px;
+      color: #696969;
+      cursor: pointer;
+      float: right;
+      width: 50px;
+    }
   }
   input {
-    width: 300px;
+    width: 320px;
+    width: calc(100% - 55px);
     height: 26px;
     line-height: 26px;
     border: none;
     box-sizing: border-box;
-    margin: 0px 5px 0px 0px;
+    margin: 0 5px 0 0;
     font-family: sans-serif;
     font-size: 12px;
     letter-spacing: 0.1em;
@@ -56,14 +101,12 @@ body {
   }
 
   button {
-    background: #EEE url('images/search.png') no-repeat center;
-    background-size: 20px;
-    height: 26px;
-    margin: 0px;
-    padding: 0px;
+    background-color: #EEE;
+    border: 0;
     float: right;
-    width: 50px;
-    border: 0px;
+    height: 26px;
+    margin: 0;
+    padding: 0;
   }
 
   input, button {
@@ -74,44 +117,26 @@ body {
   }
 
   #show_hide_zones {
-    position: absolute;
-    bottom: 20px;
-    right: 80px;
-    background: rgba(200,200,200,0.8);
-    height: 40px;
-    width: 40px;
-    z-index: 2;
-    border: solid 2px #AAAAAA;
-    cursor: pointer;
+    @include control_button;
+    bottom: 132px;
     img {
-      width: 30px;
-      height: 30px;
-      position: relative;
-      top: 5px;
-      left: 5px;
       opacity: 1.0;
-      &.hidden {
-        opacity: 0.5;
-      }
     }
   }
 
   #mylocation {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(200,200,200,0.8);
-    height: 40px;
-    width: 40px;
-    z-index: 2;
-    border: solid 2px #AAAAAA;
-    cursor: pointer;
-    img {
-      width: 30px;
-      height: 30px;
-      position: relative;
-      top: 5px;
-      left: 5px;
+    @include control_button;
+    bottom: 92px;
+  }
+
+  #zoom_out, #zoom_in {
+    @include control_button;
+    &#zoom_in {
+      bottom: 52px;
+    }
+    &#zoom_out {
+      border-top: solid 2px #AAAAAA;
+      bottom: 20px;
     }
   }
 
@@ -145,19 +170,24 @@ body {
       height: 100%;
     }
   }
+
+  .hidden {
+    opacity: 0.5 !important;
+  }
 }
 
 @media screen and (max-width: 700px) {
   body {
-    header {
-      left: 0px;
-      top: 0px;
+    nav {
+      left: 0;
+      top: 0;
       width: 100%;
       padding: 5px;
       box-sizing: border-box;
       h1 { margin-bottom: 5px; }
     }
     form {
+      @include clearfix;
       input {
         float: left;
         width: 80%;
@@ -173,12 +203,6 @@ body {
       button {
         height: 28px;
       }
-    }
-    #show_hide_zones {
-      right: 55px;
-    }
-    #mylocation {
-      right: 5px;
     }
     footer {
       display: none;
