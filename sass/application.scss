@@ -13,6 +13,7 @@ $nav_background: rgba(200,200,200,0.8);
 }
 
 body {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
   font-family: sans-serif;
 
   #canvas {
