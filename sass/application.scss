@@ -1,6 +1,7 @@
 @import 'mixins';
 
 $nav_background: rgba(200,200,200,0.8);
+$button_color: #EEE;
 
 .gm-style-iw {
   height: 100% !important;
@@ -40,7 +41,7 @@ body {
       margin-top: 10px;
       width: 100%;
       span {
-        background: #EEE;
+        background: $button_color;
         border-left: solid 3px $nav_background;
         border-right: solid 3px $nav_background;
         color: #696969;
@@ -112,7 +113,7 @@ body {
   }
 
   button {
-    background-color: #EEE;
+    background-color: $button_color;
     border: 0;
     float: right;
     height: 26px;
@@ -196,6 +197,11 @@ body {
       padding: 5px;
       box-sizing: border-box;
       h1 { margin-bottom: 5px; }
+      .neighborhood-selector span {
+        &:hover {
+          background: $button_color;
+        }
+      }
     }
     form {
       @include clearfix;
