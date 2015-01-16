@@ -47,7 +47,7 @@ $(document).ready(function() {
   $(document).on("reset", function(e, opts) {
     if(!opts) opts = {};
     if(!opts.skipClearForm) {
-      $("#address").val("").focus();
+      $("#address").val("");
     }
     if(!opts.skipZoneReset) {
       Zoner.reset();
