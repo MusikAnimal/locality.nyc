@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title locality.nyc
+    %title locality.nyc - exploring the neighborhoods of New York City
     %script{src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBhmjsRow4-pvZUzsPdYtoS6hyGAu-HqfI&v=3.exp&sensor=true"}
     %script{src: "application.js"}
     %script{src: "data.js"}
@@ -13,6 +13,7 @@
     %nav
       %header
         %h1{itemprop: "name"} locality.nyc
+        %div.site-description{itemprop: "description"} Exploring the neighborhoods of New York City
       %form#find_address
         %input#address{type: "text", placeholder: "Enter address, ZIP or neighborhood", required: true}
         %a#reset_address{href: "javascript:"}<

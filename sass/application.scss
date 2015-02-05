@@ -68,6 +68,12 @@ body {
       margin-top: 0;
       margin-bottom: 5px;
     }
+    .site-description {
+      color: #888;
+      font-size: 12px;
+      position: absolute;
+      visibility: hidden;
+    }
   }
   footer {
     bottom: 3px;
