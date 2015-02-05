@@ -8,7 +8,8 @@
     %link{href: "http://fonts.googleapis.com/css?family=Arvo", rel: "stylesheet", type: "text/css"}
     %link{rel: "stylesheet", href: "application.css", type: "text/css"}
     %meta{name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"}
-  %body{itemscope: true, itemtype: "http://schema.org/Map"}
+    %meta{name: "description", content: "Exploring the neighborhoods of New York City."}
+  %body{itemscope: true, itemtype: 'http://schema.org/Map'}
     %nav
       %header
         %h1{itemprop: "name"} locality.nyc
@@ -18,11 +19,11 @@
           &#10005;
         %button
       %div.neighborhood-selector
-        %span.borough-select.push-state{'data-url' => 'manhattan'} Manhattan
-        %span.borough-select.push-state{'data-url' => 'brooklyn'} Brooklyn
-        %span.borough-select.push-state{'data-url' => 'queens'} Queens
-        %span.borough-select.push-state{'data-url' => 'bronx'} The Bronx
-        %span.borough-select{'data-url' => 'staten_island'} Staten Island
+        %span.borough-select.push-state{'data-url' => 'manhattan', itemprop: 'keywords'} Manhattan
+        %span.borough-select.push-state{'data-url' => 'brooklyn', itemprop: 'keywords'} Brooklyn
+        %span.borough-select.push-state{'data-url' => 'queens', itemprop: 'keywords'} Queens
+        %span.borough-select.push-state{'data-url' => 'bronx', itemprop: 'keywords'} The Bronx
+        %span.borough-select{'data-url' => 'staten_island', itemprop: 'keywords'} Staten Island
     %section#info
     %section
       %div#show_hide_zones
