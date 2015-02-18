@@ -16,7 +16,8 @@
         %div.site-description{itemprop: "description"} Exploring the neighborhoods of New York City
         %div.site-keywords{itemprop: "keywords"} new york city map nyc neighborhoods boundaries manhattan brooklyn queens the bronx staten island
       %form#find_address
-        %input#address{type: "text", placeholder: "Enter address, ZIP or neighborhood", required: true}
+        %input#address{placeholder: "Enter address, ZIP or neighborhood", required: true, list: "neighborhood_select"}
+        %datalist#neighborhood_select
         %a#reset_address{href: "javascript:"}<
           &#10005;
         %button

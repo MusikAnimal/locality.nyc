@@ -1,5 +1,6 @@
 var Zoner = {
-  polyList: [],
+  polyList : [],
+  names : [],
   filteredState: false,
 
   plot: function() {
@@ -30,16 +31,35 @@ var Zoner = {
         polygon: poly
       }
       Zoner.polyList.push(polyZone);
+      Zoner.names.push(polyZone.name);
 
       poly.setMap(map);
 
-      // google.maps.event.addListener(poly, "click", showInfo);
-      google.maps.event.addListener(poly, "mouseover", highlight.bind(this, poly));
-      google.maps.event.addListener(poly, "mouseout", unhighlight.bind(this, poly, zone));
+      if(!isMobile) {
+        // google.maps.event.addListener(poly, "click", showInfo);
+        google.maps.event.addListener(poly, "mouseover", highlight.bind(this, poly));
+        google.maps.event.addListener(poly, "mouseout", unhighlight.bind(this, poly, zone));
+      }
+
       google.maps.event.addListener(poly, "click", function(e) {
         Zoner.showInfo(e.latLng.lat(),e.latLng.lng(),false);
       });
     });
+
+    Zoner.names.sort(function (a,b) {
+      return a.localeCompare(b);
+    });
+
+    for(i in Zoner.names) {
+      $("datalist").append("<option value='"+Zoner.names[i]+"'></option>");
+    }
+
+    // $("#address").remoteList({
+    //   minLength : 0,
+    //   source: function(value, response) {
+    //     return response(Zoner.names);
+    //   }
+    // });
   },
 
   getNeighborhoods: function(lat,lng) {

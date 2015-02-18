@@ -120,7 +120,7 @@ body {
     width: 320px;
     width: calc(100% - 55px);
     height: 26px;
-    line-height: 26px;
+    line-height: 16px;
     border: none;
     box-sizing: border-box;
     margin: 0 5px 0 0;
@@ -129,6 +129,12 @@ body {
     letter-spacing: 0.1em;
     padding: 6px 24px 6px 6px;
     float: left;
+    &:required, &:invalid {
+      box-shadow: none;
+    }
+    &:-moz-placeholder, &:focus {
+      box-shadow:none !important;
+    }
   }
 
   button {
@@ -142,7 +148,6 @@ body {
 
   input, button {
     &:focus {
-      // border: solid 2px #DDD;
       outline: #888 auto 5px;
     }
   }
