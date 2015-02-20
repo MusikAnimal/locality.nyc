@@ -11,11 +11,13 @@ var polyIsVisible = true;
 var isMobile = false;
 
 $(document).ready((function() {
-  if($("footer").not(":visible")) {
+  if(!$("footer").is(":visible")) {
     isMobile = true;
   }
 
   initMap();
+
+  addMainListeners();
 }));
 
 function getCurrentPosition(options) {
@@ -42,3 +44,14 @@ function setCurrentPosition(position) {
   return deferred.promise();
 }
 
+function addMainListeners() {
+  $(document).on('keyup', function(e) {
+    if(e.keyCode === 27) {
+      if($(document.activeElement).is('body')) {
+        $(document).trigger("reset");
+      } else {
+        $(document.activeElement).blur();
+      }
+    }
+  });
+}
