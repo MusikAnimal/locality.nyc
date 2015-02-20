@@ -53,13 +53,6 @@ var Zoner = {
     for(i in Zoner.names) {
       $("datalist").append("<option value='"+Zoner.names[i]+"'></option>");
     }
-
-    // $("#address").remoteList({
-    //   minLength : 0,
-    //   source: function(value, response) {
-    //     return response(Zoner.names);
-    //   }
-    // });
   },
 
   getNeighborhoods: function(lat,lng) {
