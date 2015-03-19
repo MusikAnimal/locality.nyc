@@ -99,11 +99,8 @@ var Zoner = {
   },
 
   showBorough: function(name) {
-    if(name === "staten_island") {
-      return alert("Coming soon!");
-    }
     $.each(Zoner.polyList, function(index, el) {
-      if(el.borough.toLowerCase() === name) {
+      if(el.borough.toLowerCase().replace(/ /g,'_') === name) {
         el.polygon.filtered = true;
         el.polygon.setMap(map);
       } else {
