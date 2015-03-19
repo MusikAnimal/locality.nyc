@@ -5,6 +5,7 @@ $(document).ready(function() {
 
   $("#find_address").submit(function(e) {
     e.preventDefault();
+    $("input").blur();
     $(document).trigger("reset", {skipClearForm: true});
 
     var address = $("#address").val(),
