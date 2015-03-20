@@ -33,11 +33,11 @@
     </nav>
     <section id='info'></section>
     <section>
-      <div id='show_hide_zones'>
-        <img src='images/layers.png'>
-      </div>
       <div id='mylocation'>
         <img src='images/mylocation.png'>
+      </div>
+      <div id='show_hide_zones'>
+        <img src='images/layers.png'>
       </div>
       <div>
         <div id='zoom_in'>
@@ -47,6 +47,13 @@
           <img src='images/minus.png'>
         </div>
       </div>
+    </section>
+    <section class='style-selectors'>
+      <span class='variation-btn selected' data-variation='pale_dawn'>Pale Dawn</span>
+      <span class='variation-btn' data-variation='greyscale'>Greyscale</span>
+      <span class='variation-btn' data-variation='old_map'>Old map</span>
+      <span class='variation-btn' data-variation='retro'>Retro</span>
+      <span class='variation-btn' data-variation='default'>Normal</span>
     </section>
     <footer itemscope itemtype='http://schema.org/WPFooter' role='contentinfo'>
       Copyright &copy; 2014-2015 MusikAnimal
@@ -60,11 +67,11 @@
         var script = document.createElement('script');
         script.src = 'cordova.js';
         head.appendChild(script);
-      
+
         app.initialize();
         script.src = 'init.js';
         head.appendChild(script);
-      
+
         $("body").on("click", "a", function(e) {
           var href = $(this).attr("href");
           if(href.match(/^http/) || mobileCheck()) {

@@ -16,23 +16,25 @@
   #{$prop}: #{$val};
 }
 
-@mixin control_button {
+@mixin control_button($square: true) {
   background: rgba(238,238,238,0.9);
   border: solid 2px #AAAAAA;
   cursor: pointer;
   height: 30px;
   position: absolute;
   right: 10px;
-  width: 30px;
   z-index: 2;
   &:hover {
     background: rgba(221,221,221,0.9);
   }
-  img {
-    width: 20px;
-    height: 20px;
-    position: relative;
-    top: 5px;
-    left: 5px;
+  @if ($square) {
+    width: 30px;
+    img {
+      width: 20px;
+      height: 20px;
+      position: relative;
+      top: 5px;
+      left: 5px;
+    }
   }
 }

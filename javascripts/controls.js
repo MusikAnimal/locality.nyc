@@ -29,4 +29,18 @@ $(document).ready(function() {
   $(document).on("reset",function() {
     $("#show_hide_zones").find("img").removeClass("hidden");
   });
+
+  $(".variation-btn").on("click", function() {
+    $('.variation-btn').removeClass('selected');
+    $(this).addClass('selected');
+    setStyle($(this).data('variation'));
+  });
 });
+
+
+// {
+//   featureType: "administrative",
+//   stylers: [
+//     { visibility: "off" }
+//   ]
+// }
