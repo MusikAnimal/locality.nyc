@@ -82,6 +82,7 @@ function setCenter(lat,lng,zoom) {
   var latLng = getLatLng(lat,lng);
   map.setCenter(latLng);
   map.setZoom(zoom || 15);
+  if(detectMobile()) map.panBy(0, -($("nav").outerHeight() / 2));
 }
 
 function setStyle(variation) {
