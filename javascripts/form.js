@@ -11,16 +11,19 @@ $(document).ready(function() {
     var address = $("#address").val(),
         query = address.toLowerCase().replace(/_/g,' ');
 
-    for(var key in boroughs) {
-      var borough = boroughs[key];
-      if(query === key || borough.alternate_names.indexOf(query) !== -1) {
+    for(var key in boroughedNeighborhoods) {
+      var borough = boroughedNeighborhoods[key];
+      if(query === key || boroughs[key].alternate_names.indexOf(query) !== -1) {
         return Zoner.showBorough(key);
+      } else if(borough[query]) {
+        query += ' ' + key;
+        break;
       }
     }
 
     var gc = new google.maps.Geocoder();
 
-    gc.geocode({'address' : address}, function(results) {
+    gc.geocode({'address' : query}, function(results) {
       var locality = results[0];
 
       if(locality && !Zoner.isInNYC(locality)) {
