@@ -1,5 +1,4 @@
 .DS_Store
-config.codekit
 .sass-cache
 .codekit-cache
 cordova*
