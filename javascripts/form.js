@@ -21,7 +21,7 @@ $(document).ready(function() {
       }
     }
 
-    if(Offline.check()) return alert("You are offline! Please check your internet connection and try again.");
+    if(!Offline.check()) return alert("You are offline! Please check your internet connection and try again.");
 
     var gc = new google.maps.Geocoder();
 
