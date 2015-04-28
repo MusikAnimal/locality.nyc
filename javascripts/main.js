@@ -17,6 +17,8 @@ $(document).ready((function() {
     isMobile = true;
   }
 
+  // console.log("ready");
+
   initMap();
 
   addMainListeners();
@@ -67,6 +69,7 @@ function addMainListeners() {
 }
 
 function checkNetwork() {
+  // console.log("checkNetwork");
   if(isCordova) {
     updateConnectivityState([Connection.UNKNOWN, Connection.CELL, Connection.NONE].indexOf(navigator.connection.type) === -1);
   } else {
@@ -79,6 +82,7 @@ function checkNetwork() {
 }
 
 function updateConnectivityState(state) {
+  // console.log("updateConnectivityState");
   if(state) {
     if(!stableConnection) {
       stableConnection = true;
