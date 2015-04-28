@@ -80,8 +80,8 @@ header {
   }
 }
 #offline_notice {
-  background: #DADADA;
-  color: #999;
+  background: #EC8787;
+  color: #551313;
   font-size: 14px;
   opacity: 0;
   padding: 5px;
@@ -90,10 +90,10 @@ header {
   right: 5px;
   text-transform: uppercase;
   top: 7px;
-  @include prefix(transition,opacity 1s);
+  @include prefix(transition,opacity 2s);
   &.active {
     cursor: pointer;
-    opacity: 1;
+    opacity: 0.7;
     pointer-events: initial;
   }
 }
