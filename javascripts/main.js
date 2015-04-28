@@ -9,7 +9,6 @@ ga('send', 'pageview');
 var openedInfo = new google.maps.InfoWindow(),
     polyIsVisible = true,
     isMobile = false,
-    isCordova = false,
     stableConnection = true, reconnectTimeout, reconnectInterval = 3;
 
 $(document).ready((function() {
@@ -59,8 +58,6 @@ function addMainListeners() {
     }
   });
 
-  isCordova = typeof Connection !== "undefined" && navigator.connection;
-
   $("#offline_notice").on("click", function() {
     alert("You are offline! locality.nyc uses Google Maps which may be cached on your device, however search functionality will not work while you are offline.");
   });
@@ -69,8 +66,7 @@ function addMainListeners() {
 }
 
 function checkNetwork() {
-  // console.log("checkNetwork");
-  if(isCordova) {
+  if(typeof Connection !== "undefined" && navigator.connection) {
     updateConnectivityState([Connection.UNKNOWN, Connection.CELL, Connection.NONE].indexOf(navigator.connection.type) === -1);
   } else {
     $.get("connection-test").done(function(data, xhr) {
@@ -82,7 +78,6 @@ function checkNetwork() {
 }
 
 function updateConnectivityState(state) {
-  // console.log("updateConnectivityState");
   if(state) {
     if(!stableConnection) {
       stableConnection = true;
