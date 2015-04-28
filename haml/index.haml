@@ -7,6 +7,16 @@
     %script{src: "data.js"}
     %link{href: "http://fonts.googleapis.com/css?family=Arvo", rel: "stylesheet", type: "text/css"}
     %link{rel: "stylesheet", href: "application.css", type: "text/css"}
+    %link{rel: "shortcut icon", sizes: "16x16 32x32 96x96", href: "favicon.ico"}
+    %link{rel: "apple-touch-icon", sizes: "57x57", href: "images/icons/apple-icon-57x57.png"}
+    %link{rel: "apple-touch-icon-,precomposed", sizes: "57x57", href: "images/icons/apple-icon-precomposed.png"}
+    %link{rel: "apple-touch-icon", sizes: "72x72", href: "images/icons/apple-icon-72x72.png"}
+    %link{rel: "apple-touch-icon", sizes: "114x114", href: "images/icons/apple-icon-114x114.png"}
+    %link{rel: "apple-touch-icon", sizes: "120x120", href: "images/icons/apple-icon-120x120.png"}
+    %link{rel: "apple-touch-icon", sizes: "144x144", href: "images/icons/apple-icon-144x144.png"}
+    %link{rel: "apple-touch-icon", sizes: "152x152", href: "images/icons/apple-icon-152x152.png"}
+    %meta{content: "yes", name: "apple-mobile-web-app-capable"}
+    %meta{name: "apple-mobile-web-app-status-bar-style", content: "black-translucent"}
     %meta{name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"}
     %meta{name: "description", content: "Exploring the neighborhoods of New York City."}
   %body{itemscope: true, itemtype: 'http://schema.org/Map'}
@@ -15,6 +25,7 @@
         %h1{itemprop: "name"} locality.nyc
         %div.site-description{itemprop: "description"} Exploring the neighborhoods of New York City
         %div.site-keywords{itemprop: "keywords"} new york city map nyc neighborhoods boundaries manhattan brooklyn queens the bronx staten island
+        %div#offline_notice You Are Offline
       %form#find_address
         %input#address{placeholder: "Enter address, ZIP or neighborhood", required: true, list: "neighborhood_select"}
         %datalist#neighborhood_select

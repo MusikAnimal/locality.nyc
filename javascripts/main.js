@@ -54,4 +54,19 @@ function addMainListeners() {
       }
     }
   });
+
+  Offline.options = {
+    checks: {xhr: {url: 'connection-test'}},
+    checkOnLoad: false
+  };
+  Offline.on("down", function() {
+    $("#offline_notice").addClass("active");
+  });
+  Offline.on("up", function() {
+    $("#offline_notice").removeClass("active");
+  });
+
+  $("#offline_notice").on("click", function() {
+    alert("You are offline! locality.nyc uses Google Maps which may be cached on your device. Search functionality will not work while you are offline");
+  });
 }

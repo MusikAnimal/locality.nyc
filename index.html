@@ -7,6 +7,16 @@
     <script src='data.js'></script>
     <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
     <link href='application.css' rel='stylesheet' type='text/css'>
+    <link href='favicon.ico' rel='shortcut icon' sizes='16x16 32x32 96x96'>
+    <link href='images/icons/apple-icon-57x57.png' rel='apple-touch-icon' sizes='57x57'>
+    <link href='images/icons/apple-icon-precomposed.png' rel='apple-touch-icon-,precomposed' sizes='57x57'>
+    <link href='images/icons/apple-icon-72x72.png' rel='apple-touch-icon' sizes='72x72'>
+    <link href='images/icons/apple-icon-114x114.png' rel='apple-touch-icon' sizes='114x114'>
+    <link href='images/icons/apple-icon-120x120.png' rel='apple-touch-icon' sizes='120x120'>
+    <link href='images/icons/apple-icon-144x144.png' rel='apple-touch-icon' sizes='144x144'>
+    <link href='images/icons/apple-icon-152x152.png' rel='apple-touch-icon' sizes='152x152'>
+    <meta content='yes' name='apple-mobile-web-app-capable'>
+    <meta content='black-translucent' name='apple-mobile-web-app-status-bar-style'>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' name='viewport'>
     <meta content='Exploring the neighborhoods of New York City.' name='description'>
   </head>
@@ -16,6 +26,7 @@
         <h1 itemprop='name'>locality.nyc</h1>
         <div class='site-description' itemprop='description'>Exploring the neighborhoods of New York City</div>
         <div class='site-keywords' itemprop='keywords'>new york city map nyc neighborhoods boundaries manhattan brooklyn queens the bronx staten island</div>
+        <div id='offline_notice'>You Are Offline</div>
       </header>
       <form id='find_address'>
         <input id='address' list='neighborhood_select' placeholder='Enter address, ZIP or neighborhood' required>
@@ -33,11 +44,11 @@
     </nav>
     <section id='info'></section>
     <section>
-      <div id='mylocation'>
-        <img src='images/mylocation.png'>
-      </div>
       <div id='show_hide_zones'>
         <img src='images/layers.png'>
+      </div>
+      <div id='mylocation'>
+        <img src='images/mylocation.png'>
       </div>
       <div>
         <div id='zoom_in'>
@@ -47,13 +58,6 @@
           <img src='images/minus.png'>
         </div>
       </div>
-    </section>
-    <section class='style-selectors'>
-      <span class='variation-btn selected' data-variation='pale_dawn'>Pale Dawn</span>
-      <span class='variation-btn' data-variation='greyscale'>Greyscale</span>
-      <span class='variation-btn' data-variation='old_map'>Old map</span>
-      <span class='variation-btn' data-variation='retro'>Retro</span>
-      <span class='variation-btn' data-variation='default'>Normal</span>
     </section>
     <footer itemscope itemtype='http://schema.org/WPFooter' role='contentinfo'>
       Copyright &copy; 2014-2015 MusikAnimal
@@ -67,11 +71,11 @@
         var script = document.createElement('script');
         script.src = 'cordova.js';
         head.appendChild(script);
-
+      
         app.initialize();
         script.src = 'init.js';
         head.appendChild(script);
-
+      
         $("body").on("click", "a", function(e) {
           var href = $(this).attr("href");
           if(href.match(/^http/) || mobileCheck()) {
