@@ -8,12 +8,12 @@ $(document).ready(function() {
     $("#address").val("Fetching location...");
     var timeout1 = setTimeout(function() {
       $("#address").val("Still working...");
-    }, 4000);
+    }, 5000);
     var timeout2 = setTimeout(function() {
       $("#address").val("");
       alert("Error fetching location");
-    }, 8000);
-    $.when(getCurrentPosition()).pipe(setCurrentPosition).then($.proxy(function(results,status) {
+    }, 10000);
+    $.when(getCurrentPosition()).pipe(setCurrentPosition).done(function(results,status) {
       clearTimeout(timeout1);
       clearTimeout(timeout2);
       var match = results[0];
@@ -22,7 +22,7 @@ $(document).ready(function() {
       $("#address").val(abbrAddress);
       var latLng = getLatLng(match.geometry.location.lat(),match.geometry.location.lng());
       Zoner.showInfoAndZoom(latLng);
-    },this));
+    });
   });
 
   // Listeners
