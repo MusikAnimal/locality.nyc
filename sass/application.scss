@@ -19,6 +19,15 @@ body {
   overflow: hidden;
 }
 
+* {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  input {
+    -webkit-touch-callout: auto;
+    -webkit-user-select: auto;
+  }
+}
+
 #canvas {
   position: absolute;
   top: 0;
@@ -198,21 +207,21 @@ input, button {
 
 #show_hide_zones {
   @include control_button;
-  bottom: 92px;
-  img {
-    opacity: 1.0;
-  }
+  bottom: 99px;
+  img { opacity: 0.7; }
 }
 
 #mylocation {
   @include control_button;
-  bottom: 132px;
+  bottom: 141px;
+  img { opacity: 0.8; }
 }
 
 #zoom_out, #zoom_in {
   @include control_button;
+  img { opacity: 0.6; }
   &#zoom_in {
-    bottom: 52px;
+    bottom: 57px;
   }
   &#zoom_out {
     border-top: solid 2px #AAAAAA;
@@ -253,6 +262,10 @@ input, button {
 
 .hidden {
   opacity: 0.5 !important;
+}
+
+.gm-style .gm-iw a:link {
+  display: none;
 }
 
 @media screen and (max-width: 700px) {
