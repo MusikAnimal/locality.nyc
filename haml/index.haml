@@ -19,6 +19,7 @@
     %meta{name: "apple-mobile-web-app-status-bar-style", content: "black-translucent"}
     %meta{name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"}
     %meta{name: "description", content: "Exploring the neighborhoods of New York City."}
+    %meta{name: "apple-itunes-app", content: "app-id=1015732590"}
   %body{itemscope: true, itemtype: 'http://schema.org/Map'}
     %nav
       %header
@@ -39,6 +40,9 @@
         %span.borough-select.push-state{'data-url' => 'bronx', itemprop: 'keywords'} The Bronx
         %span.borough-select{'data-url' => 'staten_island', itemprop: 'keywords'} Staten Island
     %section#info
+    %section#social
+      %a.app-store{href: "https://itunes.apple.com/us/app/locality.nyc/id1015732590?ls=1&mt=8", target: "_blank"}
+      %a.play-store{href: "https://play.google.com/store/apps/details?id=com.musikanimal.locality.nyc", target: "_blank"}
     %section#controls
       %div#show_hide_zones
         %img{src: "images/layers.png"}

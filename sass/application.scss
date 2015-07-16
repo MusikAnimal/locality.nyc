@@ -229,6 +229,32 @@ input, button {
   }
 }
 
+// social stuff
+.app-store {
+  background: url('images/app_store_badge.svg') no-repeat;
+  background-size: contain;
+  bottom: 65px;
+  display: block;
+  height: 30px;
+  position: absolute;
+  right: 50px;
+  width: 101px;
+  z-index: 100;
+}
+.play-store {
+  background: url('images/play_store_badge.png') no-repeat;
+  background-size: contain;
+  bottom: 24px;
+  display: block;
+  height: 35px;
+  position: absolute;
+  right: 50px;
+  width: 101px;
+  z-index: 100;
+}
+
+// TODO: add social phone icon selector thing!
+
 // infowindow stuff
 .zone-name {
   font-weight: bold;
@@ -304,6 +330,9 @@ input, button {
     footer {
       display: none;
     }
+  }
+  .app-store, .play-store {
+    display: none;
   }
 }
 @media screen and (max-width: 800px) {

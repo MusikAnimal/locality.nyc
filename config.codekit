@@ -71,17 +71,6 @@
 		"useDoubleQuotes": 0,
 		"useUnixNewlines": 0
 		},
-	"\/images\/1420622899_arrow-alt-left.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 926,
-		"inputAbbreviatedPath": "\/images\/1420622899_arrow-alt-left.png",
-		"outputAbbreviatedPath": "\/images\/1420622899_arrow-alt-left.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
 	"\/images\/close.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -192,6 +181,17 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/images\/left_arrow.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 926,
+		"inputAbbreviatedPath": "\/images\/left_arrow.png",
+		"outputAbbreviatedPath": "\/images\/left_arrow.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/images\/minus.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -210,6 +210,17 @@
 		"initialSize": 5291,
 		"inputAbbreviatedPath": "\/images\/mylocation.png",
 		"outputAbbreviatedPath": "\/images\/mylocation.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/images\/play_store_badge.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 8171,
+		"inputAbbreviatedPath": "\/images\/play_store_badge.png",
+		"outputAbbreviatedPath": "\/images\/play_store_badge.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
