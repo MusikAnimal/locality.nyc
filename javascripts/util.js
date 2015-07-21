@@ -11,7 +11,7 @@ function detectMobile() {
 
 function lnycAlert(message, buttonName, callback) {
   if(window.cordova) {
-    navigator.notification.alert(message, callback, "", buttonName || "OK");
+    navigator.notification.alert(message, $.noop, "", buttonName || "OK");
   } else {
     alert(message);
   }
