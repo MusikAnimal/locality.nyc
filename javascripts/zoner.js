@@ -4,6 +4,7 @@ var Zoner = {
   polyList : [],
   names : [],
   filteredState: false,
+  highlightedPoly: null,
 
   plot: function() {
     // TODO: create module for neighborhood
@@ -45,7 +46,7 @@ var Zoner = {
       google.maps.event.addListener(poly, "click", function(e) {
         updateTimeout = setTimeout(function() {
           Zoner.showInfo(e.latLng.lat(),e.latLng.lng(),false);
-        }, 500);
+        }, 200);
       });
     });
 
@@ -138,6 +139,11 @@ var Zoner = {
   showInfo: function(lat,lng, zoomTo, highlightPolyIndex) {
     openedInfo.close();
 
+    if(Zoner.highlightedPoly) {
+      unhighlight(Zoner.highlightedPoly);
+      Zoner.highlightedPoly = null;
+    }
+
     var latLng = getLatLng(lat,lng);
     var matches = Zoner.getNeighborhoods(latLng);
 
@@ -153,6 +159,7 @@ var Zoner = {
 
     if(highlightPolyIndex) {
       highlight(Zoner.polyList[highlightPolyIndex].polygon);
+      Zoner.highlightedPoly = Zoner.polyList[highlightPolyIndex].polygon;
     }
 
     $.each(matches, function(i, zone) {

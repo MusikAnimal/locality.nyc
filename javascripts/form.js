@@ -68,5 +68,9 @@ $(document).ready(function() {
     if(!opts.skipZoneReset) {
       Zoner.reset();
     }
+    if(Zoner.highlightedPoly) {
+      unhighlight(Zoner.highlightedPoly);
+      Zoner.highlightedPoly = null;
+    }
   });
 });
