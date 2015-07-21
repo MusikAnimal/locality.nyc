@@ -1,3 +1,5 @@
+var updateTimeout;
+
 var Zoner = {
   polyList : [],
   names : [],
@@ -19,7 +21,7 @@ var Zoner = {
         strokeOpacity: 0.25,
         strokeWeight: 2,
         fillColor: '#'+zone.color,
-        fillOpacity: 0.4
+        fillOpacity: zone.color === "FFFFFF" ? 0 : 0.4
         // clickable: false
       });
 
@@ -36,14 +38,19 @@ var Zoner = {
       poly.setMap(map);
 
       if(!isMobile) {
-        // google.maps.event.addListener(poly, "click", showInfo);
         google.maps.event.addListener(poly, "mouseover", highlight.bind(this, poly));
         google.maps.event.addListener(poly, "mouseout", unhighlight.bind(this, poly, zone));
       }
 
       google.maps.event.addListener(poly, "click", function(e) {
-        Zoner.showInfo(e.latLng.lat(),e.latLng.lng(),false);
+        updateTimeout = setTimeout(function() {
+          Zoner.showInfo(e.latLng.lat(),e.latLng.lng(),false);
+        }, 500);
       });
+    });
+
+    google.maps.event.addListener(map, "dblclick", function(e) {
+      clearTimeout(updateTimeout);
     });
 
     Zoner.names.sort(function (a,b) {
@@ -117,7 +124,18 @@ var Zoner = {
     Zoner.filteredState = true;
   },
 
-  showInfo: function(lat,lng,zoomTo) {
+  showNeighborhood: function(name, borough) {
+    for(var i=0; i<neighborhoods.length; i++) {
+      if(neighborhoods[i].name.toLowerCase() === name.toLowerCase()) {
+        var center = neighborhoods[i].center;
+        setCenter(center.lat, center.lng);
+        Zoner.showInfo(center.lat, center.lng, 15, i);
+        return true;
+      }
+    }
+  },
+
+  showInfo: function(lat,lng, zoomTo, highlightPolyIndex) {
     openedInfo.close();
 
     var latLng = getLatLng(lat,lng);
@@ -131,6 +149,10 @@ var Zoner = {
     });
     openedInfo.setPosition(latLng);
     openedInfo.open(map);
+
+    if(highlightPolyIndex) {
+      highlight(Zoner.polyList[highlightPolyIndex].polygon);
+    }
 
     $.each(matches, function(i, zone) {
       $(".zone-link[data-index="+zone.polyIndex+"]").hover(function() {

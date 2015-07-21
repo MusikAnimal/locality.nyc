@@ -12,14 +12,12 @@ var openedInfo = new google.maps.InfoWindow(),
     stableConnection = true, reconnectTimeout, reconnectInterval = 3;
 
 $(document).ready((function() {
-  if(!$("footer").is(":visible")) {
-    isMobile = true;
+  isMobile = detectMobile();
+  if(isMobile) {
+    $("#social").hide();
   }
 
-  // console.log("ready");
-
   initMap();
-
   addMainListeners();
 }));
 

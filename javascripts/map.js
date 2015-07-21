@@ -1,8 +1,11 @@
 function initMap() {
+  var style = window.localStorage.getItem("lnyc-variation") || "pale_dawn";
+  $(".variation-btn[data-variation="+style+"]").addClass("selected");
+
   var mapOptions = {
     center: new google.maps.LatLng(40.7033127, -73.979681),
     disableDefaultUI: true,
-    styles: defaultStyles.concat(mapStyles.pale_dawn),
+    styles: defaultStyles.concat(mapStyles[style]),
     zoom: 11
   };
 

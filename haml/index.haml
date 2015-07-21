@@ -54,7 +54,7 @@
         %div#zoom_out
           %img{src: "images/minus.png"}
     %section.style-selectors
-      %span.variation-btn.selected{"data-variation" => 'pale_dawn'} Pale Dawn
+      %span.variation-btn{"data-variation" => 'pale_dawn'} Pale Dawn
       %span.variation-btn{"data-variation" => 'greyscale'} Greyscale
       %span.variation-btn{"data-variation" => 'old_map'} Old map
       %span.variation-btn{"data-variation" => 'retro'} Retro
@@ -82,6 +82,7 @@
             return false;
           }
         });
+        $("#social").hide();
       } catch(e) {
         $.noop();
       }

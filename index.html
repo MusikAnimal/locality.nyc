@@ -65,7 +65,7 @@
       </div>
     </section>
     <section class='style-selectors'>
-      <span class='variation-btn selected' data-variation='pale_dawn'>Pale Dawn</span>
+      <span class='variation-btn' data-variation='pale_dawn'>Pale Dawn</span>
       <span class='variation-btn' data-variation='greyscale'>Greyscale</span>
       <span class='variation-btn' data-variation='old_map'>Old map</span>
       <span class='variation-btn' data-variation='retro'>Retro</span>
@@ -96,6 +96,7 @@
             return false;
           }
         });
+        $("#social").hide();
       } catch(e) {
         $.noop();
       }

@@ -30,7 +30,7 @@
 		"outputAbbreviatedPath": "\/application.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
-		"outputStyle": 1,
+		"outputStyle": 0,
 		"syntaxCheckerStyle": 0
 		},
 	"\/data-concat.codekit.js": {
@@ -333,6 +333,17 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/javascripts\/newdata.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/javascripts\/newdata.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/javascripts\/newdata-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
 	"\/javascripts\/templates\/infowindow.js": {
 		"fileType": 64,
 		"ignore": 1,
@@ -458,6 +469,17 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/nyc-zone-data\/neighborhoods.js",
 		"outputAbbreviatedPath": "\/nyc-zone-data\/min\/neighborhoods-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/old_neighborhoods.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/old_neighborhoods.js",
+		"outputAbbreviatedPath": "\/min\/old_neighborhoods-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,

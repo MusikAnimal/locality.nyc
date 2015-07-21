@@ -16,7 +16,12 @@ $(document).ready(function() {
       if(query === key || boroughs[key].alternate_names.indexOf(query) !== -1) {
         return Zoner.showBorough(key);
       } else if(borough[query]) {
-        query += ' ' + key;
+        var hasSetCenter = Zoner.showNeighborhood(query, key);
+        if(!hasSetCenter) {
+          query += ' ' + key;
+        } else {
+          return;
+        }
         break;
       }
     }
