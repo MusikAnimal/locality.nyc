@@ -13,7 +13,8 @@ var openedInfo = new google.maps.InfoWindow(),
 
 $(document).ready((function() {
   isMobile = detectMobile();
-  if(isMobile) {
+
+  if(window.cordova) {
     $("#social").hide();
   }
 
