@@ -30,7 +30,7 @@
 		"outputAbbreviatedPath": "\/application.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
-		"outputStyle": 0,
+		"outputStyle": 1,
 		"syntaxCheckerStyle": 0
 		},
 	"\/data-concat.codekit.js": {

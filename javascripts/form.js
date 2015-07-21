@@ -5,6 +5,11 @@ $(document).ready(function() {
 
   $("#find_address").submit(function(e) {
     e.preventDefault();
+
+    if($("#address").val() === "") {
+      return alert("Please provide a search query!");
+    }
+
     $("input").blur();
     $(document).trigger("reset", {skipClearForm: true});
 
