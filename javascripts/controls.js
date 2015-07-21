@@ -11,7 +11,7 @@ $(document).ready(function() {
     }, 5000);
     var timeout2 = setTimeout(function() {
       $("#address").val("");
-      alert("Error fetching location");
+      lnycAlert("Error fetching location");
     }, 10000);
     $.when(getCurrentPosition()).pipe(setCurrentPosition).done(function(results,status) {
       clearTimeout(timeout1);

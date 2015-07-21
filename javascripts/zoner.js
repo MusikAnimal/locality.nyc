@@ -140,8 +140,9 @@ var Zoner = {
 
     var latLng = getLatLng(lat,lng);
     var matches = Zoner.getNeighborhoods(latLng);
-    if(!matches) {
-      return alert("Neighborhood not established");
+
+    if(matches.length === 0) {
+      return lnycAlert("Neighborhood not established!");
     }
 
     openedInfo = new google.maps.InfoWindow({

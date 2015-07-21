@@ -8,3 +8,11 @@ function detectMobile() {
 
   return check;
 }
+
+function lnycAlert(message, buttonName, callback) {
+  if(window.cordova) {
+    navigator.notification.alert(message, callback, "", buttonName || "OK");
+  } else {
+    alert(message);
+  }
+}

@@ -7,7 +7,7 @@ $(document).ready(function() {
     e.preventDefault();
 
     if($("#address").val() === "") {
-      return alert("Please provide a search query!");
+      return lnycAlert("Please provide a search query!");
     }
 
     $("input").blur();
@@ -31,7 +31,7 @@ $(document).ready(function() {
       }
     }
 
-    if(!stableConnection) return alert("You are offline! Please check your internet connection and try again.");
+    if(!stableConnection) return lnycAlert("You are offline! Please check your internet connection and try again.");
 
     var gc = new google.maps.Geocoder();
 
@@ -44,7 +44,7 @@ $(document).ready(function() {
         })[0];
       }
       if(!locality) {
-        return alert("Address not found within city limits!\nCheck the spelling or try including the name of the borough.");
+        return lnycAlert("Address not found within city limits!\nCheck the spelling or try including the name of the borough.");
       }
 
       var abbrAddress = Zoner.getFormattedAddress(locality);
