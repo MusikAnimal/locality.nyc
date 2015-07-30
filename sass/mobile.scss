@@ -1,0 +1,47 @@
+@media screen and (max-width: 700px) {
+  body {
+    nav {
+      left: 0;
+      top: 0;
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+      h1 { margin-bottom: 5px; }
+      .neighborhood-selector span {
+        &:hover {
+          background: $button_color;
+        }
+      }
+    }
+    form {
+      @include clearfix;
+      .search-wrapper {
+        width: 80%;
+        width: calc(100% - 55px);
+      }
+      input {
+        font-size: 14px;
+        height: inherit;
+        line-height: inherit;
+      }
+      #reset_address {
+        right: 60px;
+        top: 5px;
+      }
+      button {
+        height: 28px;
+      }
+    }
+    footer {
+      display: none;
+    }
+  }
+  .app-store, .play-store {
+    display: none;
+  }
+}
+@media screen and (max-width: 800px) {
+  .style-selectors {
+    display: none;
+  }
+}

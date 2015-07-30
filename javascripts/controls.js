@@ -1,10 +1,10 @@
 $(document).ready(function() {
-  $("#show_hide_zones").click(function() {
+  $("#show_hide_zones").on("click", function() {
     $(this).find("img").toggleClass("hidden");
     Zoner.toggleZones();
   });
 
-  $("#mylocation").click(function() {
+  $("#mylocation").on("click", function() {
     $("#address").val("Fetching location...");
     var timeout1 = setTimeout(function() {
       $("#address").val("Still working...");

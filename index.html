@@ -30,7 +30,10 @@
         <div id='offline_notice'>You Are Offline</div>
       </header>
       <form id='find_address'>
-        <input id='address' list='neighborhood_select' placeholder='Enter address, ZIP or neighborhood' required>
+        <div class='search-wrapper'>
+          <input autocomplete='off' id='address' list='neighborhood_select' placeholder='Enter address, ZIP or neighborhood' required>
+          <ul id='polyfill_select'></ul>
+        </div>
         <datalist id='neighborhood_select'></datalist>
         <a href='javascript:' id='reset_address'>&#10005;</a>
         <button></button>
@@ -49,18 +52,20 @@
       <a class='play-store' href='https://play.google.com/store/apps/details?id=com.musikanimal.locality.nyc' target='_blank'></a>
     </section>
     <section id='controls'>
-      <div id='show_hide_zones'>
-        <img src='images/layers.png'>
-      </div>
-      <div id='mylocation'>
-        <img src='images/mylocation.png'>
-      </div>
-      <div>
-        <div id='zoom_in'>
-          <img src='images/plus.png'>
+      <div class='map-controls'>
+        <div id='show_hide_zones'>
+          <img src='images/layers.png'>
         </div>
-        <div id='zoom_out'>
-          <img src='images/minus.png'>
+        <div id='mylocation'>
+          <img src='images/mylocation.png'>
+        </div>
+        <div>
+          <div id='zoom_in'>
+            <img src='images/plus.png'>
+          </div>
+          <div id='zoom_out'>
+            <img src='images/minus.png'>
+          </div>
         </div>
       </div>
     </section>

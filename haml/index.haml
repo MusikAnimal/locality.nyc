@@ -28,7 +28,9 @@
         %div.site-keywords{itemprop: "keywords"} new york city map nyc neighborhoods boundaries manhattan brooklyn queens the bronx staten island
         %div#offline_notice You Are Offline
       %form#find_address
-        %input#address{placeholder: "Enter address, ZIP or neighborhood", required: true, list: "neighborhood_select"}
+        %div.search-wrapper
+          %input#address{autocomplete: "off", placeholder: "Enter address, ZIP or neighborhood", required: true, list: "neighborhood_select"}
+          %ul#polyfill_select
         %datalist#neighborhood_select
         %a#reset_address{href: "javascript:"}<
           &#10005;
@@ -44,15 +46,16 @@
       %a.app-store{href: "https://itunes.apple.com/us/app/locality.nyc/id1015732590?ls=1&mt=8", target: "_blank"}
       %a.play-store{href: "https://play.google.com/store/apps/details?id=com.musikanimal.locality.nyc", target: "_blank"}
     %section#controls
-      %div#show_hide_zones
-        %img{src: "images/layers.png"}
-      %div#mylocation
-        %img{src: "images/mylocation.png"}
-      %div
-        %div#zoom_in
-          %img{src: "images/plus.png"}
-        %div#zoom_out
-          %img{src: "images/minus.png"}
+      %div.map-controls
+        %div#show_hide_zones
+          %img{src: "images/layers.png"}
+        %div#mylocation
+          %img{src: "images/mylocation.png"}
+        %div
+          %div#zoom_in
+            %img{src: "images/plus.png"}
+          %div#zoom_out
+            %img{src: "images/minus.png"}
     %section.style-selectors
       %span.variation-btn{"data-variation" => 'pale_dawn'} Pale Dawn
       %span.variation-btn{"data-variation" => 'greyscale'} Greyscale

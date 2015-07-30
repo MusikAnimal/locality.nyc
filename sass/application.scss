@@ -1,7 +1,7 @@
 @import 'mixins';
+@import 'mobile';
 
 $nav_background: rgba(200,200,200,0.8);
-$button_color: #EEE;
 
 .gm-style-iw {
   // height: 100% !important;
@@ -144,19 +144,47 @@ form {
     width: 50px;
   }
 }
-input {
+.search-wrapper {
+  box-sizing: border-box;
+  float: left;
+  margin: 0 5px 0 0;
+  position: relative;
   width: 320px;
   width: calc(100% - 55px);
-  height: 26px;
-  line-height: 16px;
+}
+#polyfill_select {
+  background: white;
+  box-sizing: border-box;
+  left: 0;
+  line-height: 1.4em;
+  list-style: none;
+  margin: 0;
+  max-height: 128px;
+  opacity: 0.9;
+  overflow-y: scroll;
+  padding: 0;
+  position: absolute;
+  top: 28px;
+  width: 100%;
+  li {
+    cursor: pointer;
+    padding: 5px;
+    &:hover {
+      background: #EEE;
+    }
+  }
+}
+input {
   border: none;
   box-sizing: border-box;
-  margin: 0 5px 0 0;
   font-family: sans-serif;
   font-size: 12px;
+  height: 26px;
   letter-spacing: 0.1em;
+  line-height: 16px;
+  margin: 0;
   padding: 6px 24px 6px 6px;
-  float: left;
+  width: 100%;
   &:required, &:invalid {
     box-shadow: none;
   }
@@ -291,50 +319,6 @@ input, button {
 .gm-style .gm-iw a:link {
   display: none;
 }
-
-@media screen and (max-width: 700px) {
-  body {
-    nav {
-      left: 0;
-      top: 0;
-      width: 100%;
-      padding: 5px;
-      box-sizing: border-box;
-      h1 { margin-bottom: 5px; }
-      .neighborhood-selector span {
-        &:hover {
-          background: $button_color;
-        }
-      }
-    }
-    form {
-      @include clearfix;
-      input {
-        float: left;
-        width: 80%;
-        width: calc(100% - 55px);
-        font-size: 14px;
-        height: inherit;
-        line-height: inherit;
-      }
-      #reset_address {
-        right: 60px;
-        top: 5px;
-      }
-      button {
-        height: 28px;
-      }
-    }
-    footer {
-      display: none;
-    }
-  }
-  .app-store, .play-store {
-    display: none;
-  }
-}
-@media screen and (max-width: 800px) {
-  .style-selectors {
-    display: none;
-  }
+.gm-photos {
+  display: none;
 }

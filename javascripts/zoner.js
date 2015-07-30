@@ -58,8 +58,10 @@ var Zoner = {
       return a.localeCompare(b);
     });
 
-    for(i in Zoner.names) {
-      $("datalist").append("<option value='"+Zoner.names[i]+"'></option>");
+    if("options" in document.createElement("datalist")) {
+      Zoner.names.forEach(function(name) {
+        $("datalist").append("<option value='"+name+"'></option>");
+      });
     }
   },
 

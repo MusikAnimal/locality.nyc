@@ -5,6 +5,7 @@ function initMap() {
   var mapOptions = {
     center: new google.maps.LatLng(40.7033127, -73.979681),
     disableDefaultUI: true,
+    // streetViewControl: true,
     styles: defaultStyles.concat(mapStyles[style]),
     zoom: 11
   };
@@ -45,11 +46,11 @@ function addListeners() {
   google.maps.event.addListener(map, 'zoom_changed', function() {
     if (map.getZoom() < 10) map.setZoom(10);
   });
-  $("#zoom_out").click(function() {
+  $("#zoom_out").on("click", function() {
     if(map.getZoom() === 10) return false
     map.setZoom(map.getZoom()-1);
   });
-  $("#zoom_in").click(function() {
+  $("#zoom_in").on("click", function() {
     map.setZoom(map.getZoom()+1);
   });
   $(document).on("reset", function() {

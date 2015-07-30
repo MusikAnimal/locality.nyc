@@ -47,7 +47,7 @@ function setCurrentPosition(position) {
 }
 
 function addMainListeners() {
-  $(document).on('keyup', function(e) {
+  $(document).on("keyup", function(e) {
     if(e.keyCode === 27) {
       if($(document.activeElement).is('body')) {
         $(document).trigger("reset");
