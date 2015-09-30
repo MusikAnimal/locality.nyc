@@ -1,12 +1,25 @@
-$button_color: #EEE;
+$black: #000;
+$button-background: #eee;
+$button-outline: #888;
+$button-color: #696969;
+$control-color: #aaa;
+$devil-gray: #666;
+$error-background: #ec8787;
+$error-color: #551313;
+$nav-background: rgba(200, 200, 200, .8);
+$nav-border: #333;
+$nav-hover: #ddd;
+$polyfill-hover: #eee;
+$white: #fff;
 
 @mixin clearfix {
   clear: both;
+
   &::after {
-    content: ".";
+    clear: both;
+    content: '.';
     display: block;
     height: 0;
-    clear: both;
     visibility: hidden;
   }
 }
@@ -18,27 +31,30 @@ $button_color: #EEE;
   #{$prop}: #{$val};
 }
 
-@mixin control_button($square: true) {
-  background: rgba(238,238,238,0.9);
-  border: solid 2px #AAAAAA;
+@mixin control-button($square: true) {
+  background: rgba(238, 238, 238, .9);
+  border: solid 2px $control-color;
   cursor: pointer;
   height: 35px;
   position: absolute;
   right: 4px;
   z-index: 2;
+
   @media screen and (min-width: 700px) {
     &:hover {
-      background: rgba(221,221,221,0.9);
+      background: rgba(221, 221, 221, .9);
     }
   }
+
   @if ($square) {
     width: 35px;
+
     img {
-      width: 25px;
       height: 25px;
+      left: 5px;
       position: relative;
       top: 5px;
-      left: 5px;
+      width: 25px;
     }
   }
 }

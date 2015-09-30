@@ -34,7 +34,7 @@
         %div#offline_notice You Are Offline
       %form#find_address
         %div.search-wrapper
-          %input#address{autocomplete: "off", placeholder: "Enter address, ZIP or neighborhood", required: true, list: "neighborhood_select"}
+          %input#address{autocomplete: "off", placeholder: "Enter address, neighborhood, landmark...", required: true, list: "neighborhood_select"}
           %ul#polyfill_select
         %datalist#neighborhood_select
         %a#reset_address{href: "javascript:"}<
@@ -69,6 +69,12 @@
       %span.variation-btn{"data-variation" => 'default'} Normal
     %footer{role: "contentinfo", itemscope: true, itemtype: "http://schema.org/WPFooter"}
       Copyright &copy; 2014-2015 MusikAnimal
+      &middot;
+      %a{href: "mailto:musikanimal@gmail.com"} Feedback
+    %footer.mobile-footer
+      &copy; MusikAnimal
+      &middot;
+      %a{href: "mailto:musikanimal@gmail.com"} Feedback
     %main
       %div#canvas
     :javascript

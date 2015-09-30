@@ -1,45 +1,65 @@
+@import 'mixins';
+
 @media screen and (max-width: 700px) {
   body {
     nav {
+      box-sizing: border-box;
       left: 0;
+      padding: 5px;
       top: 0;
       width: 100%;
-      padding: 5px;
-      box-sizing: border-box;
+
       h1 { margin-bottom: 5px; }
-      .neighborhood-selector span {
-        &:hover {
-          background: $button_color;
-        }
-      }
     }
+
+    .neighborhood-selector span:hover {
+      background: $button-color;
+    }
+
     form {
       @include clearfix;
       .search-wrapper {
         width: 80%;
         width: calc(100% - 55px);
       }
+
       input {
         font-size: 14px;
         height: inherit;
         line-height: inherit;
       }
+
       #reset_address {
         right: 60px;
         top: 5px;
       }
+
       button {
         height: 28px;
       }
     }
+
     footer {
+      display: none;
+
+      &.mobile-footer {
+        bottom: 20px;
+        display: inline-block;
+        left: 0;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        width: auto;
+      }
+    }
+
+    .app-store,
+    .play-store {
       display: none;
     }
   }
-  .app-store, .play-store {
-    display: none;
-  }
 }
+
 @media screen and (max-width: 800px) {
   .style-selectors {
     display: none;
