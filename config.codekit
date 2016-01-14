@@ -344,6 +344,17 @@
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1
 		},
+	"\/javascripts\/temp.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/javascripts\/temp.js",
+		"outputAbbreviatedPath": "\/javascripts\/min\/temp-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/javascripts\/templates\/infowindow.js": {
 		"fileType": 64,
 		"ignore": 1,
