@@ -85,7 +85,6 @@ $(document).ready(function() {
       if(keyCode === 8 || keyCode === 32 || keyCode === 39 || keyCode === 45 || (keyCode >= 65 && keyCode <= 92)) {
         $("#polyfill_select").show();
         setTimeout(function() {
-          console.log(e.target.value);
           if(e.target.value !== oldValue) {
             oldValue = e.target.value;
             neighborhoodAutocomplete(oldValue);

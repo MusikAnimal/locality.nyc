@@ -68,11 +68,7 @@ function checkNetwork() {
   if(typeof Connection !== "undefined" && navigator.connection) {
     updateConnectivityState([Connection.UNKNOWN, Connection.CELL, Connection.NONE].indexOf(navigator.connection.type) === -1);
   } else {
-    $.get("connection-test").done(function(data, xhr) {
-      updateConnectivityState(true);
-    }).fail(function() {
-      updateConnectivityState(false);
-    });
+    updateConnectivityState(navigator.onLine);
   }
 }
 

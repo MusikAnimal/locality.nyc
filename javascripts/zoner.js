@@ -60,7 +60,7 @@ var Zoner = {
 
     if("options" in document.createElement("datalist")) {
       Zoner.names.forEach(function(name) {
-        $("datalist").append("<option value='"+name+"'></option>");
+        $("datalist").append("<option value=\""+name+"\"></option>");
       });
     }
   },
