@@ -331,15 +331,15 @@ button {
 }
 
 .play-store {
-  background: url('images/play_store_badge.png') no-repeat;
-  background-size: contain;
-  bottom: 24px;
+  bottom: 8px;
   display: block;
-  height: 35px;
   position: absolute;
-  right: 50px;
-  width: 101px;
+  right: 45px;
   z-index: 100;
+
+  img {
+    width: 140px;
+  }
 }
 
 // infowindow stuff
