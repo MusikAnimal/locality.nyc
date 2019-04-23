@@ -1,7 +1,7 @@
 .DS_Store
 .sass-cache
-.codekit-cache
 cordova*
 init.js
 plugins
 *.swp
+node_modules/

@@ -11,7 +11,7 @@ var openedInfo = new google.maps.InfoWindow(),
     isMobile = false,
     stableConnection = true, reconnectTimeout, reconnectInterval = 3;
 
-$(document).ready((function() {
+$(function() {
   isMobile = detectMobile();
 
   if(window.cordova || isMobile) {
@@ -20,7 +20,7 @@ $(document).ready((function() {
 
   initMap();
   addMainListeners();
-}));
+});
 
 function getCurrentPosition(options) {
   var deferred = $.Deferred();
@@ -60,7 +60,6 @@ function addMainListeners() {
   $("#offline_notice").on("click", function() {
     lnycAlert("You are offline! locality.nyc uses Google Maps which may be cached on your device, however search functionality will not work while you are offline.");
   });
-
   setTimeout(checkNetwork, 5000);
 }
 

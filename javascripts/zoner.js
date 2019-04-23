@@ -156,7 +156,7 @@ var Zoner = {
     }
 
     openedInfo = new google.maps.InfoWindow({
-      content : Handlebars.templates.infowindow({zones: matches})
+      content: Templates.infowindow(matches)
     });
     openedInfo.setPosition(latLng);
     openedInfo.open(map);

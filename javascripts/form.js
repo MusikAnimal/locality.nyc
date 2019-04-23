@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
   $("#canvas").on('click',function(e) {
     $("#address").blur();
   });
@@ -73,43 +73,4 @@ $(document).ready(function() {
       Zoner.highlightedPoly = null;
     }
   });
-
-  if(!("options" in document.createElement("datalist"))) {
-    // no support for datalist, damn Safari!
-    var oldValue = "";
-
-    $("#address").on("keydown", function(e) {
-      var keyCode = e.which;
-      if(keyCode >= 97 && keyCode <= 122) keyCode = keyCode - 32;
-
-      if(keyCode === 8 || keyCode === 32 || keyCode === 39 || keyCode === 45 || (keyCode >= 65 && keyCode <= 92)) {
-        $("#polyfill_select").show();
-        setTimeout(function() {
-          if(e.target.value !== oldValue) {
-            oldValue = e.target.value;
-            neighborhoodAutocomplete(oldValue);
-          }
-        }, 0);
-      }
-    });
-
-    $("#address").on("blur", function(e) {
-      $("#polyfill_select").hide();
-    });
-
-    $("#polyfill_select").on("mousedown", "li", function(e) {
-      $("#address").val($(this).text());
-      $("form").trigger("submit");
-    });
-  }
 });
-
-function neighborhoodAutocomplete(query) {
-  $("#polyfill_select").html("");
-  var regex = new RegExp('.*?'+query+'.*?', 'i');
-  return $.map(Zoner.names, function(result) {
-    if(result.match(regex)) {
-      $("#polyfill_select").append("<li class='autocomplete-result'>"+result+"</li>");
-    }
-  });
-}

@@ -45,10 +45,10 @@
       &.mobile-footer {
         bottom: 20px;
         display: inline-block;
-        left: 0;
+        left: 50%;
         margin: auto;
         position: absolute;
-        right: 0;
+        transform: translateX(-50%);
         width: auto;
       }
     }
