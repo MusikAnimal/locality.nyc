@@ -197,31 +197,6 @@ form {
   width: calc(100% - 55px);
 }
 
-#polyfill_select {
-  background: $white;
-  box-sizing: border-box;
-  left: 0;
-  line-height: 1.4em;
-  list-style: none;
-  margin: 0;
-  max-height: 128px;
-  opacity: .9;
-  overflow-y: scroll;
-  padding: 0;
-  position: absolute;
-  top: 28px;
-  width: 100%;
-
-  li {
-    cursor: pointer;
-    padding: 5px;
-
-    &:hover {
-      background: $polyfill-hover;
-    }
-  }
-}
-
 input {
   border: 0;
   box-sizing: border-box;

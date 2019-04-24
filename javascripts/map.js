@@ -2,12 +2,23 @@ function initMap() {
   var style = window.localStorage.getItem("lnyc-variation") || "pale_dawn";
   $(".variation-btn[data-variation="+style+"]").addClass("selected");
 
+  var zoom = 11,
+    lat = 40.7033127,
+    lng = -73.979681;
+
+  if (!!document.location.hash) {
+    var parts = document.location.hash.substr(1).split(',');
+    lat = parseFloat(parts[0]) || lat;
+    lng = parseFloat(parts[1]) || lng;
+    zoom = parseInt(parts[2].replace('z', ''), 10) || zoom;
+  }
+
   var mapOptions = {
-    center: new google.maps.LatLng(40.7033127, -73.979681),
+    center: new google.maps.LatLng(lat, lng),
     disableDefaultUI: true,
     // streetViewControl: true,
     styles: defaultStyles.concat(mapStyles[style]),
-    zoom: 11
+    zoom: zoom
   };
 
   map = new google.maps.Map($("#canvas")[0], mapOptions);
@@ -18,7 +29,10 @@ function initMap() {
     new google.maps.LatLng(40.9071533,-73.7153225)
   );
   google.maps.event.addListener(map, 'dragend', function() {
-    if(allowedBounds.contains(map.getCenter())) return;
+    if (allowedBounds.contains(map.getCenter())) {
+      updateHistory();
+      return;
+    }
     var c = map.getCenter();
     var x = c.lng();
     var y = c.lat();
@@ -33,6 +47,7 @@ function initMap() {
     if (y > maxY) y = maxY;
 
     map.setCenter(new google.maps.LatLng(y, x));
+    updateHistory();
   });
 
   addListeners();
@@ -45,17 +60,25 @@ function addListeners() {
   // Limit the zoom level
   google.maps.event.addListener(map, 'zoom_changed', function() {
     if (map.getZoom() < 10) map.setZoom(10);
+    updateHistory();
   });
   $("#zoom_out").on("click", function() {
     if(map.getZoom() === 10) return false
-    map.setZoom(map.getZoom()-1);
+    map.setZoom(map.getZoom() - 1);
   });
   $("#zoom_in").on("click", function() {
-    map.setZoom(map.getZoom()+1);
+    map.setZoom(map.getZoom() + 1);
   });
   $(document).on("reset", function() {
     openedInfo.close();
   });
+}
+
+function updateHistory() {
+  var lat = Number(map.getCenter().lat()).toFixed(7),
+    lng = Number(map.getCenter().lng()).toFixed(7),
+    fragment = '#' + lat + ',' + lng + ',' + map.getZoom() + 'z';
+  history.replaceState(null, document.title, fragment);
 }
 
 function createMarker(latlng, content) {
