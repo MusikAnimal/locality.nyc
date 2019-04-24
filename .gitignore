@@ -5,3 +5,5 @@ init.js
 plugins
 *.swp
 node_modules/
+.idea/
+

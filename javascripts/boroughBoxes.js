@@ -1,14 +1,14 @@
 $(document).ready(function() {
-  $(".borough-select").on("click", function() {
-    if(!$(this).hasClass("hidden") && Zoner.filteredState) {
-      $(document).trigger("reset");
+  $('.borough-select').on('click', function() {
+    if (!$(this).hasClass('hidden') && Zoner.filteredState) {
+      $(document).trigger('reset');
     } else {
-      $(document).trigger("reset",{skipZoneRest: true});
+      $(document).trigger('reset',{skipZoneRest: true});
       Zoner.showBorough($(this).data('url'));
     }
   });
 
-  $(document).on("reset", function() {
-    $(".borough-select").removeClass("hidden");
+  $(document).on('reset', function() {
+    $('.borough-select').removeClass('hidden');
   });
 });
