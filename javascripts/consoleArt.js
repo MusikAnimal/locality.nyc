@@ -5,5 +5,5 @@ if(window.console) {
   console.log("|  |_(  <_> )  \\___ / __ \\|  |_|  ||  |  \\___  |    |   |  \\___  \\  \\___ ");
   console.log("|____/\\____/ \\___  >____  /____/__||__|  / ____| /\\ |___|  / ____|\\___  >");
   console.log("                 \\/     \\/               \\/      \\/      \\/\\/         \\/ ");
-  console.log("                                  copyright (c) 2014-2016 MusikAnimal    ");
+  console.log("                                  copyright (c) 2014-2019 MusikAnimal    ");
 }
