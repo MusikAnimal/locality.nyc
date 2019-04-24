@@ -1,28 +1,30 @@
 $(function() {
-  $("#canvas").on('click',function(e) {
-    $("#address").blur();
+  let $address = $('#address');
+
+  $('#canvas').on('click',function() {
+    $address.blur();
   });
 
-  $("#find_address").submit(function(e) {
+  $('#find_address').submit(function(e) {
     e.preventDefault();
 
-    if($("#address").val() === "") {
-      return lnycAlert("Please provide a search query!");
+    if ($address.val() === '') {
+      return lnycAlert('Please provide a search query!');
     }
 
-    $("#address").blur();
-    $(document).trigger("reset", {skipClearForm: true});
+    $address.blur();
+    $(document).trigger('reset', {skipClearForm: true});
 
-    var address = $("#address").val(),
-        query = address.toLowerCase().replace(/_/g,' ');
+    let address = $address.val(),
+      query = address.toLowerCase().replace(/_/g,' ');
 
-    for(var key in boroughedNeighborhoods) {
-      var borough = boroughedNeighborhoods[key];
-      if(query === key || boroughs[key].alternate_names.indexOf(query) !== -1) {
+    for (let key in boroughedNeighborhoods) {
+      let borough = boroughedNeighborhoods[key];
+      if (query === key || boroughs[key].alternate_names.indexOf(query) !== -1) {
         return Zoner.showBorough(key);
-      } else if(borough[query]) {
-        var hasSetCenter = Zoner.showNeighborhood(query, key);
-        if(!hasSetCenter) {
+      } else if (borough[query]) {
+        let hasSetCenter = Zoner.showNeighborhood(query, key);
+        if (!hasSetCenter) {
           query += ' ' + key;
         } else {
           return;
@@ -31,44 +33,43 @@ $(function() {
       }
     }
 
-    if(!stableConnection) return lnycAlert("You are offline! Please check your internet connection and try again.");
+    if (!stableConnection) return lnycAlert('You are offline! Please check your internet connection and try again.');
 
-    var gc = new google.maps.Geocoder();
+    let gc = new google.maps.Geocoder();
 
-    gc.geocode({'address' : query}, function(results) {
-      var locality = results[0];
+    gc.geocode({'address': query}, results => {
+      let locality = results[0];
 
-      if(locality && !Zoner.isInNYC(locality)) {
-        locality = $.grep(results, function(result, i) {
+      if (locality && !Zoner.isInNYC(locality)) {
+        locality = $.grep(results, result => {
           return Zoner.isInNYC(result);
         })[0];
       }
-      if(!locality) {
-        return lnycAlert("Address not found within city limits!\nCheck the spelling or try including the name of the borough.");
+      if (!locality) {
+        return lnycAlert('Address not found within city limits!\nCheck the spelling or try including the name of the borough.');
       }
 
-      var abbrAddress = Zoner.getFormattedAddress(locality);
-      $("#address").val(abbrAddress);
+      let abbrAddress = Zoner.getFormattedAddress(locality);
+      $address.val(abbrAddress);
 
-      var lat = locality.geometry.location.lat();
-      var lng = locality.geometry.location.lng();
-      Zoner.showInfoAndZoom(lat,lng);
+      let lat = locality.geometry.location.lat();
+      let lng = locality.geometry.location.lng();
+      Zoner.showInfoAndZoom(lat, lng);
     });
   });
 
-  $("#reset_address").on("click", function() {
-    $(document).trigger("reset");
+  $('#reset_address').on('click', () => {
+    $(document).trigger('reset');
   });
 
-  $(document).on("reset", function(e, opts) {
-    if(!opts) opts = {};
-    if(!opts.skipClearForm) {
-      $("#address").val("");
+  $(document).on('reset', (e, opts = {}) => {
+    if (!opts.skipClearForm) {
+      $address.val('');
     }
-    if(!opts.skipZoneReset) {
+    if (!opts.skipZoneReset) {
       Zoner.reset();
     }
-    if(Zoner.highlightedPoly) {
+    if (Zoner.highlightedPoly) {
       unhighlight(Zoner.highlightedPoly);
       Zoner.highlightedPoly = null;
     }

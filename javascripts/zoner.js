@@ -1,72 +1,72 @@
-var updateTimeout;
+let updateTimeout;
 
-var Zoner = {
-  polyList : [],
-  names : [],
+let Zoner = {
+  polyList: [],
+  names: [],
   filteredState: null,
   highlightedPoly: null,
 
   plot: function() {
-    // TODO: create module for neighborhood
     $.each(neighborhoods, function(i,zone) {
-      var paths = [];
-      for(var j in zone.coords) {
-        var lat = zone.coords[j].lat;
-        var lng = zone.coords[j].lng;
+      let paths = [];
+      for (let j in zone.coords) {
+        let lat = zone.coords[j].lat;
+        let lng = zone.coords[j].lng;
         paths.push(new google.maps.LatLng(lat,lng));
       }
 
-      var poly = new google.maps.Polygon({
+      let poly = new google.maps.Polygon({
         paths: paths,
-        strokeColor: "#000000",
+        strokeColor: '#000000',
         strokeOpacity: 0.25,
         strokeWeight: 2,
-        fillColor: '#'+zone.color,
-        fillOpacity: zone.color === "FFFFFF" ? 0 : 0.4
+        fillColor: '#' + zone.color,
+        fillOpacity: zone.color === 'FFFFFF' ? 0 : 0.4
         // clickable: false
       });
 
-      var polyZone = {
+      let polyZone = {
         name: zone.name,
-        borough : zone.borough,
+        borough: zone.borough,
         color: zone.color,
         polyIndex: i,
-        polygon: poly
-      }
+        polygon: poly,
+        summary: zone.summary
+      };
       Zoner.polyList.push(polyZone);
       Zoner.names.push(polyZone.name);
 
       poly.setMap(map);
 
-      if(!isMobile) {
-        google.maps.event.addListener(poly, "mouseover", highlight.bind(this, poly));
-        google.maps.event.addListener(poly, "mouseout", unhighlight.bind(this, poly, zone));
+      if (!isMobile) {
+        google.maps.event.addListener(poly, 'mouseover', highlight.bind(this, poly));
+        google.maps.event.addListener(poly, 'mouseout', unhighlight.bind(this, poly, zone));
       }
 
-      google.maps.event.addListener(poly, "click", function(e) {
+      google.maps.event.addListener(poly, 'click', function(e) {
         updateTimeout = setTimeout(function() {
-          Zoner.showInfo(e.latLng.lat(),e.latLng.lng(),false,false,true);
+          Zoner.showInfo(e.latLng.lat(), e.latLng.lng());
         }, 200);
       });
     });
 
-    google.maps.event.addListener(map, "dblclick", function(e) {
+    google.maps.event.addListener(map, 'dblclick', function(e) {
       clearTimeout(updateTimeout);
     });
 
-    Zoner.names.sort(function (a,b) {
+    Zoner.names.sort(function(a,b) {
       return a.localeCompare(b);
     });
 
-    if("options" in document.createElement("datalist")) {
+    if ('options' in document.createElement('datalist')) {
       Zoner.names.forEach(function(name) {
-        $("datalist").append("<option value=\""+name+"\"></option>");
+        $('datalist').append('<option value="' + name + '"></option>');
       });
     }
   },
 
   getNeighborhoods: function(lat,lng) {
-    var latLng = getLatLng(lat,lng);
+    let latLng = getLatLng(lat,lng);
 
     return $.grep(Zoner.polyList, function(zone) {
       return google.maps.geometry.poly.containsLocation(latLng, zone.polygon);
@@ -75,25 +75,25 @@ var Zoner = {
 
   getFormattedAddress: function(locality) {
     // FIXME: use our neighborhood address, not what Google gives you
-    var abbrAddress = locality.address_components[0].short_name + " " + locality.address_components[1].short_name;
-    if(locality.address_components[2].short_name !== "New York") {
-      abbrAddress += ", " + locality.address_components[2].short_name;
+    let abbrAddress = locality.address_components[0].short_name + ' ' + locality.address_components[1].short_name;
+    if (locality.address_components[2].short_name !== 'New York') {
+      abbrAddress += ', ' + locality.address_components[2].short_name;
     }
     return abbrAddress;
   },
 
   isInNYC: function(locality) {
-    if(!locality.address_components.length) {
+    if (!locality.address_components.length) {
       return false;
     }
-    for(var i=0; i<locality.address_components.length; i++) {
-      if(locality.address_components[i].types.indexOf("administrative_area_level_2") >= 0) {
+    for (let i = 0; i < locality.address_components.length; i++) {
+      if (locality.address_components[i].types.indexOf('administrative_area_level_2') >= 0) {
         return !!locality.address_components[i].long_name.match(/New York County|Kings County|Queens County|Bronx County|Richmond County/i);
       }
-      if(locality.address_components[i].types.indexOf("locality") >= 0) {
+      if (locality.address_components[i].types.indexOf('locality') >= 0) {
         return !!locality.address_components[i].long_name.match(/New York/i);
       }
-      if(locality.address_components[i].types.indexOf("sublocality") >= 0) {
+      if (locality.address_components[i].types.indexOf('sublocality') >= 0) {
         return !!locality.address_components[i].long_name.match(/Manhattan|Brooklyn|Queens|Bronx|Staten Island/i);
       }
     }
@@ -111,7 +111,7 @@ var Zoner = {
 
   showBorough: function(name, lat, lng, zoom) {
     $.each(Zoner.polyList, function(index, el) {
-      if(el.borough.toLowerCase().replace(/ /g, '_') === name) {
+      if (el.borough.toLowerCase().replace(/ /g, '_') === name) {
         el.polygon.filtered = true;
         el.polygon.setMap(map);
       } else {
@@ -119,19 +119,19 @@ var Zoner = {
         el.polygon.setMap(null);
       }
     });
-    var center = boroughs[name];
+    let center = boroughs[name];
     setCenter(lat || center.lat, lng || center.lng, zoom || 11);
-    var $button = $(".borough-select[data-url='"+name+"']");
-    $button.removeClass("hidden").siblings().addClass("hidden");
-    $("#address").val($button.text());
+    let $button = $(".borough-select[data-url='" + name + "']");
+    $button.removeClass('hidden').siblings().addClass('hidden');
+    $('#address').val($button.text());
     Zoner.filteredState = name;
     updateHistory();
   },
 
   showNeighborhood: function(name, lat, lng, zoom) {
     name = name.replace(/_/g, ' ');
-    $.each(Zoner.polyList, function(index, el) {
-      if(el.name.toLowerCase() === name) {
+    $.each(Zoner.polyList, (index, el) => {
+      if (el.name.toLowerCase() === name) {
         el.polygon.filtered = true;
         el.polygon.setMap(map);
       } else {
@@ -139,9 +139,10 @@ var Zoner = {
         el.polygon.setMap(null);
       }
     });
-    var humanName = name; // = name is a safeguard, should always be replaced.
-    for (var i=0; i<neighborhoods.length; i++) {
-      if(neighborhoods[i].name.toLowerCase() === name.toLowerCase()) {
+    let humanName = name, // = name is a safeguard, should always be replaced.
+      infoLat, infoLng, i;
+    for (i = 0; i < neighborhoods.length; i++) {
+      if (neighborhoods[i].name.toLowerCase() === name.toLowerCase()) {
         infoLat = neighborhoods[i].center.lat;
         infoLng = neighborhoods[i].center.lng;
         humanName = neighborhoods[i].name;
@@ -150,66 +151,69 @@ var Zoner = {
     }
     Zoner.filteredState = name.replace(/ /g, '_');
     setCenter(lat || infoLat, lng || infoLng, zoom || map.getZoom());
-    Zoner.showInfo(infoLat, infoLng, 15, i);
-    $("#address").val(humanName);
+    Zoner.showInfo(infoLat, infoLng, i, true);
+    $('#address').val(humanName);
     updateHistory();
   },
 
-  showInfo: function(lat,lng, zoomTo, highlightPolyIndex, fromTap) {
+  showInfo: function(lat, lng, highlightPolyIndex, showSummary) {
     openedInfo.close();
 
-    if(Zoner.highlightedPoly) {
+    if (Zoner.highlightedPoly) {
       unhighlight(Zoner.highlightedPoly);
       Zoner.highlightedPoly = null;
     }
 
-    var latLng = getLatLng(lat,lng);
-    var matches = Zoner.getNeighborhoods(latLng);
+    let latLng = getLatLng(lat, lng);
+    let matches = Zoner.getNeighborhoods(latLng);
 
-    if(matches.length === 0 && fromTap) {
+    if (matches.length === 0 && fromTap) {
       return;
-    } else if(matches.length === 0) {
-      return lnycAlert("Neighborhood not established!");
+    } else if (matches.length === 0) {
+      return lnycAlert('Neighborhood not established!');
+    }
+
+    if (Number.isInteger(highlightPolyIndex)) {
+      highlight(Zoner.polyList[highlightPolyIndex].polygon);
+      Zoner.highlightedPoly = Zoner.polyList[highlightPolyIndex].polygon;
+
+      // Narrow down to the one that was click on.
+      matches = matches.filter(match => match.name === Zoner.polyList[highlightPolyIndex].name);
     }
 
     openedInfo = new google.maps.InfoWindow({
-      content: Templates.infowindow(matches)
+      content: Templates.infowindow(matches, !!showSummary)
     });
     openedInfo.setPosition(latLng);
     openedInfo.open(map);
 
-    if(highlightPolyIndex) {
-      highlight(Zoner.polyList[highlightPolyIndex].polygon);
-      Zoner.highlightedPoly = Zoner.polyList[highlightPolyIndex].polygon;
-    }
+    google.maps.event.addListener(openedInfo, 'domready', () => {
+      $('body').off('click.infowindow').one('click.infowindow', '.zone-link', e => {
+        Zoner.showNeighborhood($(e.target).data('key'));
+      });
 
-    $.each(matches, function(i, zone) {
-      $(".zone-link[data-index="+zone.polyIndex+"]").hover(function() {
-        highlight(zone.polygon);
-      }.bind(this), function() {
-        unhighlight(zone.polygon);
-      }.bind(this));
-    });
-
-    google.maps.event.addListener(openedInfo, 'domready', function () {
-      $('body').off('click.infowindow').one('click.infowindow', '.zone-link', function () {
-        Zoner.showNeighborhood($(this).data('key'));
+      $.each(matches, (i, zone) => {
+        $('.zone-link[data-index=' + zone.polyIndex + ']').hover(() => {
+          highlight(zone.polygon);
+        }, function() {
+          unhighlight(zone.polygon);
+        });
       });
     });
   },
 
-  showInfoAndZoom: function(lat,lng) {
-    Zoner.showInfo(lat,lng);
-    setCenter(lat,lng);
+  showInfoAndZoom: function(lat, lng) {
+    Zoner.showInfo(lat, lng);
+    setCenter(lat, lng);
   },
 
   toggleZones: function() {
     $.each(Zoner.polyList, function(index, el) {
-      if(el.polygon.map) {
+      if (el.polygon.map) {
         el.polygon.setMap(null);
-      } else if(el.polygon.filtered && Zoner.filteredState) {
+      } else if (el.polygon.filtered && Zoner.filteredState) {
         el.polygon.setMap(map);
-      } else if(!Zoner.filteredState) {
+      } else if (!Zoner.filteredState) {
         el.polygon.setMap(map);
       }
     });

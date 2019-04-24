@@ -1,0 +1,32 @@
+@import 'mixins';
+
+.zone-name {
+  color: $black;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.zone-link {
+  color: $link-color;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.zone-icon {
+  display: inline-block;
+  height: 14px;
+  position: relative;
+  top: 2px;
+  width: 14px;
+}
+
+.zone-size {
+  color: $muted;
+  float: right;
+  font-weight: normal;
+}
+
+.zone-summary {
+  font-family: sans-serif;
+  margin-top: 5px;
+}

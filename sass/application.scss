@@ -1,5 +1,6 @@
 @import 'mixins';
 @import 'mobile';
+@import 'infowindow';
 
 .gm-style-iw ~ div {
   img {
@@ -314,26 +315,6 @@ button {
 
   img {
     width: 140px;
-  }
-}
-
-// infowindow stuff
-.zone-name {
-  color: $black;
-  font-size: 14px;
-  font-weight: bold;
-
-  span {
-    display: inline-block;
-    height: 14px;
-    position: relative;
-    top: 2px;
-    width: 14px;
-  }
-
-  a {
-    color: $devil-gray;
-    margin-left: 5px;
   }
 }
 
