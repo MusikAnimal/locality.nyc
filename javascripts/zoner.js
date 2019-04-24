@@ -139,15 +139,19 @@ var Zoner = {
         el.polygon.setMap(null);
       }
     });
+    var humanName = name; // = name is a safeguard, should always be replaced.
     for (var i=0; i<neighborhoods.length; i++) {
       if(neighborhoods[i].name.toLowerCase() === name.toLowerCase()) {
         infoLat = neighborhoods[i].center.lat;
         infoLng = neighborhoods[i].center.lng;
+        humanName = neighborhoods[i].name;
+        break;
       }
     }
     Zoner.filteredState = name.replace(/ /g, '_');
     setCenter(lat || infoLat, lng || infoLng, zoom || map.getZoom());
     Zoner.showInfo(infoLat, infoLng, 15, i);
+    $("#address").val(humanName);
     updateHistory();
   },
 
@@ -185,6 +189,12 @@ var Zoner = {
       }.bind(this), function() {
         unhighlight(zone.polygon);
       }.bind(this));
+    });
+
+    google.maps.event.addListener(openedInfo, 'domready', function () {
+      $('body').off('click.infowindow').one('click.infowindow', '.zone-link', function () {
+        Zoner.showNeighborhood($(this).data('key'));
+      });
     });
   },
 
