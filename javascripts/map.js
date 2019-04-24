@@ -56,11 +56,19 @@ function initMap() {
 
   Zoner.plot();
 
-  if (zone) {
-    if (Object.keys(boroughs).indexOf(zone) !== -1) {
-      Zoner.showBorough(zone, lat, lng, zoom);
+  $(window).on('load', function () {
+    if (zone) {
+      if (Object.keys(boroughs).indexOf(zone) !== -1) {
+        Zoner.showBorough(zone, lat, lng, zoom);
+      } else {
+        neighborhoods.forEach(function (neighborhood) {
+          if (neighborhood.name.toLowerCase().replace(/ /g, '_') === zone) {
+            Zoner.showNeighborhood(zone, lat, lng, zoom);
+          }
+        });
+      }
     }
-  }
+  });
 }
 
 function addListeners() {

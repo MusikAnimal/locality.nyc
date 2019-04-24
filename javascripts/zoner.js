@@ -111,7 +111,7 @@ var Zoner = {
 
   showBorough: function(name, lat, lng, zoom) {
     $.each(Zoner.polyList, function(index, el) {
-      if(el.borough.toLowerCase().replace(/ /g,'_') === name) {
+      if(el.borough.toLowerCase().replace(/ /g, '_') === name) {
         el.polygon.filtered = true;
         el.polygon.setMap(map);
       } else {
@@ -128,15 +128,27 @@ var Zoner = {
     updateHistory();
   },
 
-  showNeighborhood: function(name, borough) {
-    for(var i=0; i<neighborhoods.length; i++) {
+  showNeighborhood: function(name, lat, lng, zoom) {
+    name = name.replace(/_/g, ' ');
+    $.each(Zoner.polyList, function(index, el) {
+      if(el.name.toLowerCase() === name) {
+        el.polygon.filtered = true;
+        el.polygon.setMap(map);
+      } else {
+        el.polygon.filtered = false;
+        el.polygon.setMap(null);
+      }
+    });
+    for (var i=0; i<neighborhoods.length; i++) {
       if(neighborhoods[i].name.toLowerCase() === name.toLowerCase()) {
-        var center = neighborhoods[i].center;
-        setCenter(center.lat, center.lng);
-        Zoner.showInfo(center.lat, center.lng, 15, i);
-        return true;
+        infoLat = neighborhoods[i].center.lat;
+        infoLng = neighborhoods[i].center.lng;
       }
     }
+    Zoner.filteredState = name.replace(/ /g, '_');
+    setCenter(lat || infoLat, lng || infoLng, zoom || map.getZoom());
+    Zoner.showInfo(infoLat, infoLng, 15, i);
+    updateHistory();
   },
 
   showInfo: function(lat,lng, zoomTo, highlightPolyIndex, fromTap) {
