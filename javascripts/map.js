@@ -4,13 +4,15 @@ function initMap() {
 
   var zoom = 11,
     lat = 40.7033127,
-    lng = -73.979681;
+    lng = -73.979681,
+    zone = undefined;
 
   if (!!document.location.hash) {
     var parts = document.location.hash.substr(1).split(',');
     lat = parseFloat(parts[0]) || lat;
     lng = parseFloat(parts[1]) || lng;
-    zoom = parseInt(parts[2].replace('z', ''), 10) || zoom;
+    zoom = parseInt((parts[2] || '').replace('z', ''), 10) || zoom;
+    zone = parts[3];
   }
 
   var mapOptions = {
@@ -52,8 +54,13 @@ function initMap() {
 
   addListeners();
 
-  // setUserCoords();
   Zoner.plot();
+
+  if (zone) {
+    if (Object.keys(boroughs).indexOf(zone) !== -1) {
+      Zoner.showBorough(zone, lat, lng, zoom);
+    }
+  }
 }
 
 function addListeners() {
@@ -78,6 +85,11 @@ function updateHistory() {
   var lat = Number(map.getCenter().lat()).toFixed(7),
     lng = Number(map.getCenter().lng()).toFixed(7),
     fragment = '#' + lat + ',' + lng + ',' + map.getZoom() + 'z';
+
+  if (Zoner.filteredState) {
+    fragment += ',' + Zoner.filteredState;
+  }
+
   history.replaceState(null, document.title, fragment);
 }
 

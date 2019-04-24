@@ -3,7 +3,7 @@ var updateTimeout;
 var Zoner = {
   polyList : [],
   names : [],
-  filteredState: false,
+  filteredState: null,
   highlightedPoly: null,
 
   plot: function() {
@@ -105,10 +105,11 @@ var Zoner = {
       el.polygon.filtered = false;
       el.polygon.setMap(map);
     });
-    Zoner.filteredState = false;
+    Zoner.filteredState = null;
+    updateHistory();
   },
 
-  showBorough: function(name) {
+  showBorough: function(name, lat, lng, zoom) {
     $.each(Zoner.polyList, function(index, el) {
       if(el.borough.toLowerCase().replace(/ /g,'_') === name) {
         el.polygon.filtered = true;
@@ -119,12 +120,12 @@ var Zoner = {
       }
     });
     var center = boroughs[name];
-    setCenter(center.lat,center.lng,11);
-    $button = $(".borough-select[data-url='"+name+"']");
-    // $button.css("border",0);
+    setCenter(lat || center.lat, lng || center.lng, zoom || 11);
+    var $button = $(".borough-select[data-url='"+name+"']");
     $button.removeClass("hidden").siblings().addClass("hidden");
     $("#address").val($button.text());
-    Zoner.filteredState = true;
+    Zoner.filteredState = name;
+    updateHistory();
   },
 
   showNeighborhood: function(name, borough) {
