@@ -17,9 +17,9 @@ window.Templates = {
         : '';
 
       return `<div class='zone-name'>
-                <span class="zone-icon" style='background:#${zone.color}'></span>
+                <span class='zone-icon' style='background:#${zone.color}'></span>
                 ${zoneSizeContent}
-                <span class='${zones.length > 0 ? 'zone-link' : ''}' data-index='${zone.polyIndex}' data-key="${zone.name.toLowerCase().replace(/ /g, '_')}">${zone.name}</span>
+                <span class='zone-link' data-index='${zone.polyIndex}' data-key="${zone.name.toLowerCase().replace(/ /g, '_')}">${zone.name}</span>
               </div>
               <div class='zone-summary'>
                 ${content}

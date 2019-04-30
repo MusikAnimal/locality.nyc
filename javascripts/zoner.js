@@ -167,9 +167,7 @@ let Zoner = {
     let latLng = getLatLng(lat, lng);
     let matches = Zoner.getNeighborhoods(latLng);
 
-    if (matches.length === 0 && fromTap) {
-      return;
-    } else if (matches.length === 0) {
+    if (matches.length === 0 && !highlightPolyIndex) {
       return lnycAlert('Neighborhood not established!');
     }
 
