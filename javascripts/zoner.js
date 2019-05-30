@@ -128,10 +128,10 @@ let Zoner = {
     updateHistory();
   },
 
-  showNeighborhood: function(name, lat, lng, zoom) {
+  showNeighborhood: function(name) {
     name = name.replace(/_/g, ' ');
     $.each(Zoner.polyList, (index, el) => {
-      if (el.name.toLowerCase() === name) {
+      if (el.name.toLowerCase() === name.toLowerCase()) {
         el.polygon.filtered = true;
         el.polygon.setMap(map);
       } else {
@@ -150,8 +150,14 @@ let Zoner = {
       }
     }
     Zoner.filteredState = name.replace(/ /g, '_');
-    setCenter(lat || infoLat, lng || infoLng, zoom || map.getZoom());
     Zoner.showInfo(infoLat, infoLng, i, true);
+
+    if (detectMobile() && !$('.mobile-infowindow').hasClass('show')) {
+      $('.mobile-infowindow').html(Templates.infowindow([neighborhoods[i]], true));
+    }
+
+    map.fitBounds(Zoner.polyList[i].polygon.getBounds());
+
     $('#address').val(humanName);
     updateHistory();
   },
@@ -179,11 +185,19 @@ let Zoner = {
       matches = matches.filter(match => match.name === Zoner.polyList[highlightPolyIndex].name);
     }
 
-    openedInfo = new google.maps.InfoWindow({
-      content: Templates.infowindow(matches, !!showSummary)
-    });
-    openedInfo.setPosition(latLng);
-    openedInfo.open(map);
+    if (showSummary && matches.length === 1) {
+      $('.mobile-infowindow')
+        .html(Templates.infowindow(matches, true))
+        .addClass('show');
+    }
+
+    if (!detectMobile() || !showSummary) {
+      openedInfo = new google.maps.InfoWindow({
+        content: Templates.infowindow(matches, !!showSummary)
+      });
+      openedInfo.setPosition(latLng);
+      openedInfo.open(map);
+    }
 
     google.maps.event.addListener(openedInfo, 'domready', () => {
       $('body').off('click.infowindow').one('click.infowindow', '.zone-link', e => {
@@ -200,9 +214,14 @@ let Zoner = {
     });
   },
 
-  showInfoAndZoom: function(lat, lng) {
-    Zoner.showInfo(lat, lng);
-    setCenter(lat, lng);
+  showInfoAndZoom: function(lat, lng, showSummary = false) {
+    const matches = Zoner.getNeighborhoods(lat, lng);
+    if (matches.length === 1) {
+      this.showNeighborhood(matches[0].name);
+    } else {
+      Zoner.showInfo(lat, lng, null, showSummary);
+      setCenter(lat, lng);
+    }
   },
 
   toggleZones: function() {

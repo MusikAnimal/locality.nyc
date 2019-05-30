@@ -1,11 +1,11 @@
 $(function() {
   let $address = $('#address');
 
-  $('#canvas').on('click',function() {
+  $('#canvas').on('click', function() {
     $address.blur();
   });
 
-  $('#find_address').submit(function(e) {
+  $('#find_address').submit(e => {
     e.preventDefault();
 
     if ($address.val() === '') {
@@ -23,7 +23,7 @@ $(function() {
       if (query === key || boroughs[key].alternate_names.indexOf(query) !== -1) {
         return Zoner.showBorough(key);
       } else if (borough[query]) {
-        return Zoner.showNeighborhood(query, key);
+        return Zoner.showNeighborhood(query);
       }
     }
 
@@ -49,6 +49,8 @@ $(function() {
       let lat = locality.geometry.location.lat();
       let lng = locality.geometry.location.lng();
       Zoner.showInfoAndZoom(lat, lng);
+      Zoner.filteredState = abbrAddress;
+      updateHistory();
     });
   });
 

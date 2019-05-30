@@ -1,6 +1,7 @@
 function initMap() {
   let style = window.localStorage.getItem('lnyc-variation') || 'pale_dawn';
   $('.variation-btn[data-variation=' + style + ']').addClass('selected');
+  $('#map_style--' + style).prop('checked', true);
 
   let zoom = 11,
     lat = 40.7033127,
@@ -63,9 +64,12 @@ function initMap() {
       } else {
         neighborhoods.forEach(function(neighborhood) {
           if (neighborhood.name.toLowerCase().replace(/ /g, '_') === zone) {
-            Zoner.showNeighborhood(zone, lat, lng, zoom);
+            return Zoner.showNeighborhood(zone); // , lat, lng, zoom);
           }
         });
+
+        $('#address').val(decodeURIComponent(zone));
+        $('#find_address').trigger('submit');
       }
     }
   });
@@ -86,16 +90,19 @@ function addListeners() {
   });
   $(document).on('reset', function() {
     openedInfo.close();
+    $('.mobile-infowindow').removeClass('show');
+    // $('.mobile-infowindow').html('');
   });
 }
 
-function updateHistory() {
+function updateHistory(filter) {
   let lat = Number(map.getCenter().lat()).toFixed(7),
     lng = Number(map.getCenter().lng()).toFixed(7),
     fragment = '#' + lat + ',' + lng + ',' + map.getZoom() + 'z';
 
-  if (Zoner.filteredState) {
-    fragment += ',' + Zoner.filteredState;
+  filter = filter || Zoner.filteredState;
+  if (filter) {
+    fragment += ',' + filter;
   }
 
   history.replaceState(null, document.title, fragment);
@@ -129,7 +136,10 @@ function setCenter(lat, lng, zoom) {
   let latLng = getLatLng(lat, lng);
   map.setCenter(latLng);
   map.setZoom(zoom || 15);
-  if (detectMobile()) map.panBy(0, -($('nav').outerHeight() / 2));
+  // if (detectMobile()) {
+  //   const offset = ($(window).height() / 2) - (($('nav').outerHeight() + $('.mobile-infowindow').outerHeight()) / 2);
+  //   map.panBy(0, offset);
+  // }
 }
 
 function setStyle(variation) {
@@ -168,6 +178,18 @@ google.maps.Map.prototype.clearMarkers = function() {
     this.markers[i].set_map(null);
   }
 };
+google.maps.Polygon.prototype.getBounds = function() {
+  let bounds = new google.maps.LatLngBounds();
+  const paths = this.getPaths();
+  let path;
+  for (let i = 0; i < paths.getLength(); i++) {
+    path = paths.getAt(i);
+    for (let ii = 0; ii < path.getLength(); ii++) {
+      bounds.extend(path.getAt(ii));
+    }
+  }
+  return bounds;
+}
 
 const mapStyles = {
   fuse: [{'featureType': 'landscape','elementType': 'all','stylers': [{'saturation': -100},{'lightness': 65},{'visibility': 'on'}]},{'featureType': 'poi','elementType': 'all','stylers': [{'saturation': -100},{'lightness': 51},{'visibility': 'simplified'}]},{'featureType': 'road.highway','elementType': 'all','stylers': [{'saturation': -100},{'visibility': 'simplified'}]},{'featureType': 'road.arterial','elementType': 'all','stylers': [{'saturation': -100},{'lightness': 30},{'visibility': 'on'}]},{'featureType': 'road.local','elementType': 'all','stylers': [{'saturation': -100},{'lightness': 40},{'visibility': 'on'}]},{'featureType': 'transit','elementType': 'all','stylers': [{'saturation': -100},{'visibility': 'simplified'}]},{'featureType': 'transit','elementType': 'geometry.fill','stylers': [{'visibility': 'on'}]},{'featureType': 'water','elementType': 'geometry','stylers': [{'hue': '#ffff00'},{'lightness': -25},{'saturation': -97}]},{'featureType': 'water','elementType': 'labels','stylers': [{'visibility': 'on'},{'lightness': -25},{'saturation': -100}]}],

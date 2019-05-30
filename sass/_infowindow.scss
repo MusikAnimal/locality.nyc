@@ -30,3 +30,63 @@
   font-family: sans-serif;
   margin-top: 5px;
 }
+
+.mobile-infowindow--close {
+  display: none;
+}
+
+.mobile-infowindow {;
+  background: $white;
+  bottom: 0;
+  color: $footer-text-color;
+  display: none; // Shown in _mobile.scss
+  left: 0;
+  margin: auto;
+  opacity: 0;
+  position: fixed;
+  right: 0;
+  transform: translateY(100%);
+  transition: opacity 500ms ease, transform 500ms ease;
+  width: 100%;
+  z-index: 101;
+
+  &.show {
+    opacity: 0.9;
+    transform: translateY(0%);
+  }
+
+  .zone-name {
+    background: $button-background;
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .zone-link {
+    text-decoration: none;
+  }
+
+  .zone-summary {
+    margin: 0;
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 10px;
+  }
+
+  .zone-size {
+    color: $devil-gray;
+  }
+
+  .mobile-infowindow--close {
+    bottom: 3px;
+    color: $footer-text-color;
+    cursor: pointer;
+    display: block;
+    font-size: 20px;
+    margin-left: 8px;
+    position: relative;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

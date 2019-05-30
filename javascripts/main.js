@@ -14,12 +14,6 @@ let openedInfo = new google.maps.InfoWindow(),
   stableConnection = true, reconnectTimeout, reconnectInterval = 3;
 
 $(function() {
-  isMobile = detectMobile();
-
-  if (window.cordova || isMobile) {
-    $('#social').hide();
-  }
-
   initMap();
   addMainListeners();
 });

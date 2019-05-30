@@ -95,25 +95,24 @@ nav {
   }
 }
 
-header {
-  h1 {
-    cursor: default;
-    font-family: 'Arvo', serif;
-    margin-bottom: 5px;
-    margin-top: 0;
-  }
+.logo {
+  cursor: default;
+  display: inline-block;
+  font-family: 'Arvo', serif;
+  margin-bottom: 5px;
+  margin-top: 0;
+}
 
-  .site-description {
-    color: $button-outline;
-    font-size: 12px;
-    position: absolute;
-    visibility: hidden;
-  }
+.site-description {
+  color: $button-outline;
+  font-size: 12px;
+  position: absolute;
+  visibility: hidden;
+}
 
-  .site-keywords {
-    position: absolute;
-    visibility: hidden;
-  }
+.site-keywords {
+  position: absolute;
+  visibility: hidden;
 }
 
 #offline_notice {
@@ -134,6 +133,20 @@ header {
     opacity: .7;
     pointer-events: initial;
   }
+}
+
+.content-wrapper::after {
+  background: $black;
+  content: '';
+  height: 100%;
+  opacity: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: opacity 500ms ease;
+  width: 100%;
+  visibility: hidden;
+  z-index: 101;
 }
 
 footer {
@@ -243,7 +256,7 @@ button {
   top: 22px;
   z-index: 2;
 
-  span {
+  .variation-btn {
     background: rgba(238, 238, 238, .9);
     border: solid 2px $control-color;
     color: $control-color;

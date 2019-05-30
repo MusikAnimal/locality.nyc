@@ -26,95 +26,120 @@
     <!-- %meta{property: "og:type", content: "website"} -->
   </head>
   <body itemscope itemtype='http://schema.org/Map'>
-    <nav>
-      <header>
-        <h1 itemprop='name'>locality.nyc</h1>
-        <div class='site-description' itemprop='description'>Exploring the neighborhoods of New York City</div>
-        <div class='site-keywords' itemprop='keywords'>new york city map nyc neighborhoods boundaries manhattan brooklyn queens the bronx staten island nyc neighborhoods map</div>
-        <div id='offline_notice'>You Are Offline</div>
+    <section class="mobile-hamburger-menu">
+      <header class="mobile-menu-header">
+        <button class="mobile-hamburger-btn" type="button">&#10005;</button>
+        <h1 class="logo" itemprop='name'>locality.nyc</h1>
       </header>
-      <form id='find_address'>
-        <div class='search-wrapper'>
-          <input autocomplete='off' id='address' list='neighborhood_select' placeholder='Address, neighborhood, landmark...' required>
-        </div>
-        <datalist id='neighborhood_select'></datalist>
-        <a href='javascript:' id='reset_address'>&#10005;</a>
-        <button></button>
-      </form>
-      <div class='neighborhood-selector'>
-        <span class='borough-select' data-url='manhattan' itemprop='keywords'>Manhattan</span>
-        <span class='borough-select' data-url='brooklyn' itemprop='keywords'>Brooklyn</span>
-        <span class='borough-select' data-url='queens' itemprop='keywords'>Queens</span>
-        <span class='borough-select' data-url='bronx' itemprop='keywords'>The Bronx</span>
-        <span class='borough-select' data-url='staten_island' itemprop='keywords'>Staten Island</span>
+      <div class="mobile-menu-title">Map style</div>
+      <div class="mobile-menu-item">
+        <label class="variation-btn" data-variation="pale_dawn">
+          <input id="map_style--pale_dawn" name="map_style" type="radio" value="pale_dawn" /> Pale Dawn
+        </label>
       </div>
-    </nav>
-    <section id='info'></section>
-    <section id='social'>
-      <!-- <a class='app-store' href='https://itunes.apple.com/us/app/locality.nyc/id1015732590?ls=1&amp;mt=8' target='_blank'></a> -->
-      <a class='play-store' href='https://play.google.com/store/apps/details?id=com.musikanimal.locality.nyc' target='_blank'><img src="images/google-play-badge.png" /></a>
-    </section>
-    <section id='controls'>
-      <div class='map-controls'>
-        <div id='show_hide_zones'>
-          <img src='images/layers.png'>
-        </div>
-        <div id='mylocation'>
-          <img src='images/mylocation.png'>
-        </div>
-        <div>
-          <div id='zoom_in'>
-            <img src='images/plus.png'>
-          </div>
-          <div id='zoom_out'>
-            <img src='images/minus.png'>
-          </div>
-        </div>
+      <div class="mobile-menu-item">
+        <label class="variation-btn" data-variation="greyscale">
+          <input id="map_style--greyscale" name="map_style" type="radio" value="greyscale" /> Greyscale
+        </label>
+      </div>
+      <div class="mobile-menu-item">
+        <label class="variation-btn" data-variation="old_map">
+          <input id="map_style--old_map" name="map_style" type="radio" value="old_map" /> Old map
+        </label>
+      </div>
+      <div class="mobile-menu-item">
+        <label class="variation-btn" data-variation="retro">
+          <input id="map_style--retro" name="map_style" type="radio" value="retro" /> Retro
+        </label>
+      </div>
+      <div class="mobile-menu-item">
+        <label class="variation-btn" data-variation="default">
+          <input id="map_style--default" name="map_style" type="radio" value="default" /> Normal
+        </label>
       </div>
     </section>
-    <section class='style-selectors'>
-      <span class='variation-btn' data-variation='pale_dawn'>Pale Dawn</span>
-      <span class='variation-btn' data-variation='greyscale'>Greyscale</span>
-      <span class='variation-btn' data-variation='old_map'>Old map</span>
-      <span class='variation-btn' data-variation='retro'>Retro</span>
-      <span class='variation-btn' data-variation='default'>Normal</span>
-    </section>
-    <footer itemscope itemtype='http://schema.org/WPFooter' role='contentinfo'>
-      Copyright &copy; 2014-2019 MusikAnimal
-      &middot;
-      <a href='mailto:musikanimal@gmail.com?subject=locality.nyc'>Feedback</a>
-    </footer>
-    <footer class='mobile-footer'>
-      &copy; MusikAnimal
-      &middot;
-      <a href='mailto:musikanimal@gmail.com?subject=locality.nyc'>Feedback</a>
-    </footer>
-    <main>
-      <div id='canvas'></div>
-    </main>
-    <script>
-      try {
-        var head = document.getElementsByTagName('head')[0];
-        var script = document.createElement('script');
-        script.src = 'cordova.js';
-        head.appendChild(script);
 
-        app.initialize();
-        script.src = 'init.js';
-        head.appendChild(script);
+    <div class="content-wrapper">
+      <nav>
+        <header>
+          <button class="mobile-hamburger-btn" type="button">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <h1 class="logo" itemprop='name'>locality.nyc</h1>
+          <div class='site-description' itemprop='description'>Exploring the neighborhoods of New York City</div>
+          <div class='site-keywords' itemprop='keywords'>new york city map nyc neighborhoods boundaries manhattan brooklyn queens the bronx staten island nyc neighborhoods map</div>
+          <div id='offline_notice'>You Are Offline</div>
+        </header>
+        <form id='find_address'>
+          <div class='search-wrapper'>
+            <input autocomplete='off' id='address' list='neighborhood_select' placeholder='Address, neighborhood, landmark...' required>
+          </div>
+          <datalist id='neighborhood_select'></datalist>
+          <a href='javascript:' id='reset_address'>&#10005;</a>
+          <button></button>
+        </form>
+        <div class='neighborhood-selector'>
+          <span class='borough-select' data-url='manhattan' itemprop='keywords'>Manhattan</span>
+          <span class='borough-select' data-url='brooklyn' itemprop='keywords'>Brooklyn</span>
+          <span class='borough-select' data-url='queens' itemprop='keywords'>Queens</span>
+          <span class='borough-select' data-url='bronx' itemprop='keywords'>The Bronx</span>
+          <span class='borough-select' data-url='staten_island' itemprop='keywords'>Staten Island</span>
+        </div>
+      </nav>
 
-        $("body").on("click", "a", function(e) {
-          var href = $(this).attr("href");
+      <section id='info'></section>
 
-          if(href.match(/^http/) || mobileCheck()) {
-            window.open(href, "_system");
-            e.preventDefault();
-            return false;
-          }
-        });
-      } catch(e) {
-        $.noop();
-      }
-    </script>
+      <section id='social'>
+        <!-- <a class='app-store' href='https://itunes.apple.com/us/app/locality.nyc/id1015732590?ls=1&amp;mt=8' target='_blank'></a> -->
+        <a class='play-store' href='https://play.google.com/store/apps/details?id=com.musikanimal.locality.nyc' target='_blank'><img src="images/google-play-badge.png" /></a>
+      </section>
+
+      <section id='controls'>
+        <div class='map-controls'>
+          <div id='show_hide_zones'>
+            <img src='images/layers.png'>
+          </div>
+          <div id='mylocation'>
+            <img src='images/mylocation.png'>
+          </div>
+          <div>
+            <div id='zoom_in'>
+              <img src='images/plus.png'>
+            </div>
+            <div id='zoom_out'>
+              <img src='images/minus.png'>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class='style-selectors'>
+        <label for="map_style--pale_dawn" class='variation-btn' data-variation='pale_dawn'>Pale Dawn</label>
+        <label for="map_style--greyscale" class='variation-btn' data-variation='greyscale'>Greyscale</label>
+        <label for="map_style--old_map" class='variation-btn' data-variation='old_map'>Old map</label>
+        <label for="map_style--retro" class='variation-btn' data-variation='retro'>Retro</label>
+        <label for="map_style--default" class='variation-btn' data-variation='default'>Normal</label>
+      </section>
+
+      <section class="mobile-infowindow"></section>
+
+      <footer itemscope itemtype='http://schema.org/WPFooter' role='contentinfo'>
+        Copyright &copy; 2014-2019 MusikAnimal
+        &middot;
+        <a href='mailto:musikanimal@gmail.com?subject=locality.nyc'>Feedback</a>
+      </footer>
+
+      <footer class='mobile-footer'>
+        &copy; MusikAnimal
+        &middot;
+        <a href='mailto:musikanimal@gmail.com?subject=locality.nyc'>Feedback</a>
+      </footer>
+
+      <main>
+        <div id='canvas'></div>
+      </main>
+    </div>
   </body>
 </html>

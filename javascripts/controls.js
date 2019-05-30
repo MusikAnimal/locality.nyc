@@ -21,7 +21,7 @@ $(document).ready(function() {
       let abbrAddress = Zoner.getFormattedAddress(match);
       $('#address').val(abbrAddress);
       let latLng = getLatLng(match.geometry.location.lat(),match.geometry.location.lng());
-      Zoner.showInfoAndZoom(latLng);
+      Zoner.showInfoAndZoom(latLng.lat(), latLng.lng(), true);
     });
   });
 
@@ -32,10 +32,26 @@ $(document).ready(function() {
 
   $('.variation-btn').on('click', function() {
     $('.variation-btn').removeClass('selected');
-    $(this).addClass('selected');
+    $('.variation-btn[data-variation=' + this.dataset.variation + ']').addClass('selected');
+    $('body').removeClass('show-mobile-menu');
 
     let style = $(this).data('variation');
     setStyle(style);
     window.localStorage.setItem('lnyc-variation', style);
+  });
+
+  $('.mobile-infowindow').on('click', '.mobile-infowindow--close', () => {
+    $(document).trigger('reset');
+  });
+
+  $('.mobile-hamburger-btn').on('click', e => {
+    $('body').toggleClass('show-mobile-menu');
+
+    if ($('body').hasClass('show-mobile-menu')) {
+      e.stopPropagation();
+      $('.content-wrapper').one('click', () => {
+        $('body').removeClass('show-mobile-menu');
+      });
+    }
   });
 });
