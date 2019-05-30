@@ -12,10 +12,6 @@
       h1 { margin-bottom: 5px; }
     }
 
-    .neighborhood-selector span:hover {
-      background: $button-color;
-    }
-
     form {
       @include clearfix;
       .search-wrapper {
@@ -57,6 +53,10 @@
     .play-store {
       display: none;
     }
+  }
+
+  .borough-select:hover {
+    background: $button-background !important;
   }
 }
 

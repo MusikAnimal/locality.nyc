@@ -1,5 +1,5 @@
-$(document).ready(function() {
-  $('.borough-select').on('click', function() {
+$(function() {
+  $('.borough-select').on('click', function(e) {
     if (!$(this).hasClass('hidden') && Zoner.filteredState) {
       $(document).trigger('reset');
     } else {

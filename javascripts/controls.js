@@ -39,11 +39,3 @@ $(document).ready(function() {
     window.localStorage.setItem('lnyc-variation', style);
   });
 });
-
-
-// {
-//   featureType: "administrative",
-//   stylers: [
-//     { visibility: "off" }
-//   ]
-// }
