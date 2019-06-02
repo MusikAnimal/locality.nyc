@@ -35,23 +35,38 @@
       }
     }
 
-    footer {
+    .map-footer {
       display: none;
+    }
 
-      &.mobile-footer {
-        bottom: 20px;
-        display: inline-block;
-        left: 50%;
-        margin: auto;
-        position: absolute;
-        transform: translateX(-50%);
-        width: auto;
+    .mobile-footer {
+      bottom: 20px;
+      display: inline-block;
+      left: 50%;
+      margin: auto;
+      position: absolute;
+      transform: translateX(-50%);
+      width: auto;
+    }
+
+    .mobile-menu-footer {
+      bottom: 0;
+      font-size: 15px;
+      left: 0;
+      padding: 15px;
+      position: absolute;
+
+      a {
+        color: #100f0b;
       }
     }
 
-    .app-store,
-    .play-store {
+    .mobile-app-links {
       display: none;
+    }
+
+    .play-store {
+      margin-left: -10px;
     }
   }
 
@@ -88,9 +103,12 @@
     margin-left: 42px;
   }
 
+  .modal-content {
+    max-width: 75% !important;
+  }
+
   .mobile-hamburger-btn {
     background-color: transparent;
-    border: solid 1px $nav-hover;
     float: none;
     height: 28px;
     left: 5px;
@@ -137,6 +155,7 @@
       border: 0;
       color: $button-outline;
       font-size: 25px;
+      outline: none;
       top: 5px;
 
       &:focus {
@@ -167,15 +186,8 @@
     }
   }
 
-  .show-mobile-menu {
-    .content-wrapper::after {
-      opacity: 0.5;
-      visibility: visible;
-    }
-
-    .mobile-hamburger-menu {
-      transform: translateX(0%);
-    }
+  .show-mobile-menu .mobile-hamburger-menu {
+    transform: translateX(0%);
   }
 }
 

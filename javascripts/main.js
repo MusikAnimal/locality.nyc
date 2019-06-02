@@ -42,15 +42,58 @@ function setCurrentPosition(position) {
   return deferred.promise();
 }
 
+function setupShareLinks(name) {
+  $('#share-modal .share-modal--name').text(name || 'locality.nyc');
+  $('#share_url_input').val(document.URL);
+  $('.copy-url').text('Copy');
+  $('.copy-url').on('click', e => {
+    $('#share_url_input').select();
+    document.execCommand('copy');
+    $(e.target).text('Copied!');
+  });
+  $('.facebook-share-link').prop(
+    'href',
+    `https://www.facebook.com/sharer.php?u=${encodeURIComponent(document.URL)}`
+  );
+  $('.twitter-share-link').prop(
+    'href',
+    `https://twitter.com/intent/tweet?url=${encodeURIComponent(document.URL)}&text=Check out "${name}" on locality.nyc`
+  );
+  $('.linkedin-share-link').prop(
+    'href',
+    `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(document.URL)}&title="${name}" on locality.nyc&summary=Exploring the neighborhoods of New York City&source=locality.nyc`
+  );
+}
+
 function addMainListeners() {
-  $(document).on('keyup', function(e) {
+  $(document).on('keyup', e => {
     if (e.keyCode === 27) {
+      $('.modal').removeClass('show');
+      $('body').removeClass('show-mobile-menu')
+        .removeClass('show-modal');
+
       if ($(document.activeElement).is('body')) {
         $(document).trigger('reset');
       } else {
         $(document.activeElement).blur();
       }
     }
+  });
+
+  $('body').on('click', '.modal-link', e => {
+    e.preventDefault();
+    $('body').removeClass('show-mobile-menu')
+      .addClass('show-modal');
+    const targetId = $(e.target).data('target');
+    $('#' + targetId).addClass('show');
+
+    if ('share-modal' === targetId) {
+      setupShareLinks($(e.target).data('name'));
+    }
+  });
+  $('.modal-close').on('click', () => {
+    $('.modal').removeClass('show');
+    $('body').removeClass('show-modal');
   });
 
   $('#offline_notice').on('click', function() {

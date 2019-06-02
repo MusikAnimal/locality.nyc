@@ -57,6 +57,15 @@
           <input id="map_style--default" name="map_style" type="radio" value="default" /> Normal
         </label>
       </div>
+      <footer class="mobile-menu-footer">
+        <a class='play-store' href='https://play.google.com/store/apps/details?id=com.musikanimal.locality.nyc' target='_blank'><img src="images/google-play-badge.png" /></a>
+        <br/>
+        <a href="#" class="modal-link" data-target="about-modal">About</a>
+        &bull;
+        <a href="#" class="modal-link" data-target="attribution-modal">Attribution</a>
+        &bull;
+        <a href="mailto:musikanimal+locality.nyc@gmail.com?subject=locality.nyc+feedback" data-target="attribution-modal">Feedback</a>
+      </footer>
     </section>
 
     <div class="content-wrapper">
@@ -91,7 +100,7 @@
 
       <section id='info'></section>
 
-      <section id='social'>
+      <section class='mobile-app-links'>
         <!-- <a class='app-store' href='https://itunes.apple.com/us/app/locality.nyc/id1015732590?ls=1&amp;mt=8' target='_blank'></a> -->
         <a class='play-store' href='https://play.google.com/store/apps/details?id=com.musikanimal.locality.nyc' target='_blank'><img src="images/google-play-badge.png" /></a>
       </section>
@@ -125,21 +134,100 @@
 
       <section class="mobile-infowindow"></section>
 
-      <footer itemscope itemtype='http://schema.org/WPFooter' role='contentinfo'>
+      <footer class="map-footer" itemscope itemtype='http://schema.org/WPFooter' role='contentinfo'>
         Copyright &copy; 2014-2019 MusikAnimal
         &middot;
-        <a href='mailto:musikanimal@gmail.com?subject=locality.nyc'>Feedback</a>
+        <a href='mailto:musikanimal+locality.nyc@gmail.com?subject=locality.nyc+feedback'>Feedback</a>
       </footer>
 
       <footer class='mobile-footer'>
         &copy; MusikAnimal
         &middot;
-        <a href='mailto:musikanimal@gmail.com?subject=locality.nyc'>Feedback</a>
+        <a href='mailto:musikanimal+locality.nyc@gmail.com?subject=locality.nyc+feedback'>Feedback</a>
       </footer>
 
       <main>
         <div id='canvas'></div>
       </main>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="about-modal">
+      <div class="modal-content">
+        <header class="modal-header">
+          <strong>About locality.nyc</strong>
+          <button class="modal-close">&#10005;</button>
+        </header>
+        <div class="modal-body">
+          <p>
+            <em>Exploring the neighborhoods of New York City</em>
+          </p>
+          <p>
+            Neighborhood data was adapted from <a target="_blank" href="https://www1.nyc.gov/">nyc.gov</a>,
+            <a target="_blank" href="https://www.openstreetmap.org">OpenStreetMap</a>,
+            <a target="_blank" href="https://en.wikipedia.org">Wikipedia</a>,
+            <a target="_blank" href="https://www.google.com/maps">Google Maps</a>, and contributors like you.
+            All neighborhood boundaries are subject to debate.
+          </p>
+          <p>
+            The neighborhood summaries were crafted from careful research. Some information may be out of date.
+          </p>
+          <p>
+            To report errors, please <a href="mailto:musikanimal+locality.nyc@gmail.com?subject=locality.nyc+feedback">contact the maintainer</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="attribution-modal">
+      <div class="modal-content">
+        <header class="modal-header">
+          <strong>
+            Attribution
+          </strong>
+          <button class="modal-close">&#10005;</button>
+        </header>
+        <div class="modal-body">
+          <p>
+            Share and social media icons courtesy of
+            <a target="_blank" href="https://fontawesome.com/icons/share-square?style=solid">Font Awesome</a>,
+            released under the <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> license.
+          </p>
+          <p>
+            Raw map data (aside from neighborhood boundaries) are copyright of Google LLC.
+            locality.nyc has no affiliation with Google.
+          </p>
+          <p>
+            Neighborhood data and historical summaries are copyright of MusikAnimal. Unauthorized reproduction is prohibited.
+            Please <a href="mailto:musikanimal+locality.nyc@gmail.com?subject=locality.nyc+licensing">contact me</a> about licensing.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="share-modal">
+      <div class="modal-content">
+        <header class="modal-header">
+          <strong>
+            Share
+            <span class="share-modal--name"></span>
+          </strong>
+          <button class="modal-close">&#10005;</button>
+        </header>
+        <div class="modal-body">
+          <input type="text" id="share_url_input" />
+          <button class="copy-url">Copy</button>
+          <p class="social-media-links">
+            <a href="#" class="facebook-share-link">
+              <img src="images/facebook-square-brands.svg" alt="Share on Facebook" />
+            </a>
+            <a href="#" class="twitter-share-link">
+              <img src="images/twitter-square-brands.svg" alt="Share on Twitter" />
+            </a>
+            <a href="#" class="linkedin-share-link">
+              <img src="images/linkedin-brands.svg" alt="Share on LinkedIn" />
+            </a>
+          </p>
+        </div>
+      </div>
     </div>
   </body>
 </html>

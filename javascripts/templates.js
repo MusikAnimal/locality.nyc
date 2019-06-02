@@ -1,6 +1,6 @@
 window.Templates = {
   infowindow: function(zones, showSummary) {
-    let content = '';
+    let content = '', shareLink = '';
 
     if (showSummary && zones.length === 1) {
       content = zones[0].summary || '';
@@ -12,6 +12,12 @@ window.Templates = {
         zones[0].acres = new Number(
           (google.maps.geometry.spherical.computeArea(zones[0].polygon.getPath()) / 2.59e+6) * 640
         ).toFixed(0);
+
+        shareLink = `
+          <br/><a class="share-link modal-link" data-target="share-modal" data-name="${zones[0].name}" href="#">
+            <img src='images/share-square-solid.svg' alt="Share icon">
+            Share
+          </a>`;
       }
     }
 
@@ -20,14 +26,15 @@ window.Templates = {
         ? `<span class='zone-size'>${zone.acres} ac, ${zone.miles} mi</span>`
         : '';
 
-      return `<div class='zone-name'>
+      return `<header class='zone-name mobile-infowindow--header'>
                 <button class="mobile-infowindow--close">&#10005;</button>
                 <span class='zone-icon' style='background:#${zone.color}'></span>
                 ${zoneSizeContent}
                 <span class='zone-link' data-index='${zone.polyIndex}' data-key="${zone.name.toLowerCase().replace(/ /g, '_')}">${zone.name}</span>
-              </div>
+              </header>
               <div class='zone-summary'>
                 ${content}
+                ${shareLink}
               </div>`;
     }).join('');
   }

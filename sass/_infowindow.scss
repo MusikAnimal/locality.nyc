@@ -55,10 +55,8 @@
     transform: translateY(0%);
   }
 
-  .zone-name {
-    background: $button-background;
-    font-size: 16px;
-    padding: 10px;
+  .mobile-infowindow--header {
+    @extend .lnyc-popup--header;
   }
 
   .zone-link {
@@ -77,16 +75,6 @@
   }
 
   .mobile-infowindow--close {
-    bottom: 3px;
-    color: $footer-text-color;
-    cursor: pointer;
-    display: block;
-    font-size: 20px;
-    margin-left: 8px;
-    position: relative;
-
-    &:focus {
-      outline: none;
-    }
+    @extend .lnyc-popup--close;
   }
 }
