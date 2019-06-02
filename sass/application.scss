@@ -402,6 +402,12 @@ button {
     }
   }
 
+  .about-modal-logo {
+    float: left;
+    padding: 0 5px 5px 0;
+    width: 50px;
+  }
+
   .copy-url {
     background: $button-outline;
     color: $button-invert-color;
@@ -469,6 +475,14 @@ button {
 
 .hidden {
   opacity: .5 !important;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.no-wrap {
+  white-space: nowrap;
 }
 
 .gm-style .gm-iw a:link {
