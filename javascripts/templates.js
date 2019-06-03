@@ -27,7 +27,7 @@ window.Templates = {
         : '';
 
       return `<header class='zone-name mobile-infowindow--header'>
-                <button class="mobile-infowindow--close">&#10005;</button>
+                <button class="mobile-infowindow--close"></button>
                 <span class='zone-icon' style='background:#${zone.color}'></span>
                 ${zoneSizeContent}
                 <span class='zone-link' data-index='${zone.polyIndex}' data-key="${zone.name.toLowerCase().replace(/ /g, '_')}">${zone.name}</span>

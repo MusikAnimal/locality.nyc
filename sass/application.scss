@@ -183,6 +183,7 @@ form {
     height: 18px;
     line-height: 20px;
     opacity: .5;
+    outline: none;
     position: absolute;
     right: 59px;
     text-align: center;
@@ -247,7 +248,7 @@ button {
 input,
 button {
   &:focus {
-    outline: $button-outline auto 5px;
+    outline: $button-outline auto 2px;
   }
 }
 
@@ -401,7 +402,8 @@ button {
     position: relative;
 
     input {
-      outline: $button-outline auto 5px;
+      border: solid 1px $button-outline;
+      outline: $button-outline auto 2px;
       padding-right: 73px;
     }
   }
@@ -416,12 +418,12 @@ button {
     background: $button-outline;
     color: $button-invert-color;
     font-size: 16px;
-    height: 25px;
-    line-height: 25px;
+    height: 26px;
+    line-height: 26px;
     position: absolute;
     right: 10px;
     text-align: center;
-    top: 11px;
+    top: 10px;
     width: 70px;
   }
 
@@ -464,13 +466,21 @@ button {
 }
 
 .lnyc-popup--close {
-  bottom: 3px;
-  color: $footer-text-color;
+  background: url('images/cross.svg') no-repeat;
   cursor: pointer;
   display: block;
-  font-size: 20px;
+  height: 15px;
   margin-left: 8px;
   position: relative;
+  top: 1px;
+  width: 15px;
+  //bottom: 3px;
+  //color: $footer-text-color;
+  //cursor: pointer;
+  //display: block;
+  //font-size: 20px;
+  //margin-left: 8px;
+  //position: relative;
 
   &:focus {
     outline: none;

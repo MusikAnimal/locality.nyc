@@ -28,7 +28,11 @@
   <body itemscope itemtype='http://schema.org/Map'>
     <section class="mobile-hamburger-menu">
       <header class="mobile-menu-header">
-        <button class="mobile-hamburger-btn" type="button">&#10005;</button>
+        <button class="mobile-hamburger-btn" type="button">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+            <g><path d="M585.8,500l385.9-385.9c24.5-24.5,24.5-61.3,0-85.8c-24.5-24.5-61.3-24.5-85.8,0L500,414.3L114.1,28.4c-24.5-24.5-61.2-24.5-85.8,0c-24.5,24.5-24.5,61.3,0,85.8L411.2,500L28.4,885.9c-24.5,24.5-24.5,61.3,0,85.8c9.2,12.3,27.6,18.4,42.9,18.4c15.3,0,30.6-6.1,42.9-18.4L500,585.8l385.9,385.9c12.3,12.3,27.6,18.4,42.9,18.4s30.6-6.1,42.9-18.4c24.5-24.5,24.5-61.3,0-85.8L585.8,500z"></path></g>
+          </svg>
+        </button>
         <h1 class="logo" itemprop='name'>locality.nyc</h1>
       </header>
       <div class="mobile-menu-title">Map style</div>
@@ -173,7 +177,7 @@
       <div class="modal-content">
         <header class="modal-header">
           <strong>About locality.nyc</strong>
-          <button class="modal-close">&#10005;</button>
+          <button class="modal-close"></button>
         </header>
         <div class="modal-body">
           <p>
@@ -202,7 +206,7 @@
           <strong>
             Attribution
           </strong>
-          <button class="modal-close">&#10005;</button>
+          <button class="modal-close"></button>
         </header>
         <div class="modal-body">
           <p>
@@ -228,10 +232,10 @@
             Share
             <span class="share-modal--name"></span>
           </strong>
-          <button class="modal-close">&#10005;</button>
+          <button class="modal-close"></button>
         </header>
         <div class="modal-body">
-          <input type="text" id="share_url_input" />
+          <input type="text" id="share_url_input" readonly="readonly" />
           <button class="copy-url">Copy</button>
           <p class="social-media-links">
             <a target="_blank" href="#" class="facebook-share-link">
