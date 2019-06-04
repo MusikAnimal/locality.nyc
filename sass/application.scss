@@ -466,12 +466,12 @@ button {
 }
 
 .lnyc-popup--close {
-  background-size: 15px;
   background: url('images/cross.svg') no-repeat center;
+  background-size: 15px;
   cursor: pointer;
   display: block;
   height: 37px;
-  position: relative;
+  position: absolute;
   right: 0;
   top: 0;
   width: 28px;
