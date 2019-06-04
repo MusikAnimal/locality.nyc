@@ -30,6 +30,10 @@
 .zone-summary {
   font-family: sans-serif;
   margin-top: 5px;
+
+  a {
+    color: $link-color;
+  }
 }
 
 .mobile-infowindow--close {
