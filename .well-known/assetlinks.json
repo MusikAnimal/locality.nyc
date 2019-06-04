@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.musikanimal.localitynyc",
+    "sha256_cert_fingerprints":
+    ["B6:14:BD:7F:BB:78:29:C4:18:EF:94:87:C1:50:03:3C:1C:41:E0:6F:79:F7:24:00:16:03:9A:91:EF:3F:2C:06"]
+  }
+}]
+
