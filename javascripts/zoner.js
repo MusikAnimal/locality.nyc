@@ -45,7 +45,7 @@ let Zoner = {
 
       google.maps.event.addListener(poly, 'click', function(e) {
         updateTimeout = setTimeout(function() {
-          Zoner.showInfo(e.latLng.lat(), e.latLng.lng());
+          Zoner.showInfo(e.latLng.lat(), e.latLng.lng(), null, false, true);
         }, 200);
       });
     });
@@ -162,7 +162,7 @@ let Zoner = {
     updateHistory();
   },
 
-  showInfo: function(lat, lng, highlightPolyIndex, showSummary) {
+  showInfo: function(lat, lng, highlightPolyIndex, showSummary, fromClick) {
     openedInfo.close();
 
     if (Zoner.highlightedPoly) {
@@ -173,8 +173,12 @@ let Zoner = {
     let latLng = getLatLng(lat, lng);
     let matches = Zoner.getNeighborhoods(latLng);
 
-    if (matches.length === 0 && !highlightPolyIndex) {
-      return lnycAlert('Neighborhood not established!');
+    if (matches.length === 0) {
+      if (fromClick) {
+        return;
+      } else if (!highlightPolyIndex) {
+        return lnycAlert('Neighborhood not established!');
+      }
     }
 
     if (Number.isInteger(highlightPolyIndex)) {
