@@ -7,7 +7,7 @@ let Zoner = {
   highlightedPoly: null,
 
   plot: function() {
-    $.each(neighborhoods, function(i,zone) {
+    $.each(neighborhoods, function(i, zone) {
       let paths = [];
       for (let j in zone.coords) {
         let lat = zone.coords[j].lat;

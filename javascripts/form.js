@@ -18,11 +18,14 @@ $(function() {
     let address = $address.val(),
       query = address.toLowerCase().replace(/_/g,' ');
 
-    for (let key in boroughedNeighborhoods) {
-      let borough = boroughedNeighborhoods[key];
-      if (query === key || boroughs[key].alternate_names.indexOf(query) !== -1) {
-        return Zoner.showBorough(key);
-      } else if (borough[query]) {
+    for (let borough in boroughs) {
+      if (query === borough || boroughs[borough].alternate_names.indexOf(query) !== -1) {
+        return Zoner.showBorough(borough);
+      }
+
+      const neighborhood = neighborhoods.filter(n => n.name.toLowerCase() === query)[0];
+
+      if (neighborhood) {
         return Zoner.showNeighborhood(query);
       }
     }
