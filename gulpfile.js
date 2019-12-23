@@ -6,7 +6,11 @@ const argv = require('yargs').argv;
 
 const resources = [
   './javascripts/vendor/jquery-2.1.1.min.js',
-  './nyc-zone-data/neighborhoods.js',
+  './nyc-zone-data/manhattan.js',
+  './nyc-zone-data/brooklyn.js',
+  './nyc-zone-data/queens.js',
+  './nyc-zone-data/thebronx.js',
+  './nyc-zone-data/statenisland.js',
   './nyc-zone-data/boroughs.js',
   './javascripts/boroughBoxes.js',
   './javascripts/consoleArt.js',
