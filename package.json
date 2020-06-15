@@ -26,6 +26,6 @@
     "gulp-load-plugins": "^1.6.0",
     "gulp-rev": "^9.0.0",
     "gulp-sass": "^4.1.0",
-    "gulp-uglify-es": "^1.0.4"
+    "gulp-uglify-es": "^2.0.0"
   }
 }
