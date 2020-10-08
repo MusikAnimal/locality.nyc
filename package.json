@@ -23,7 +23,7 @@
     "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-eslint": "^5.0.0",
-    "gulp-load-plugins": "^1.6.0",
+    "gulp-load-plugins": "^2.0.5",
     "gulp-rev": "^9.0.0",
     "gulp-sass": "^4.1.0",
     "gulp-uglify-es": "^1.0.4"
